@@ -18,7 +18,7 @@ import 'modules/splash/views/pages/splash_screen.dart';
 }
  */
 
-void main(){
+void main() {
   runApp(const MaterialApp(
     home: SplashScreen(),
   ));
