@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/account_screen.dart';
+
+import 'modules/account/views/pages/account_screen.dart';
+import 'modules/splash/views/pages/splash_screen.dart';
+
 // import 'package:mojo_pizza_app_mvp/modules/adaptive_layout/adaptive_layout.dart';
 // import 'package:mojo_pizza_app_mvp/modules/adaptive_layout/desktop_layout.dart';
 // import 'package:mojo_pizza_app_mvp/modules/adaptive_layout/mobile_layout.dart';
