@@ -20,18 +20,8 @@ import 'modules/splash/views/pages/splash_screen.dart';
 }
  */
 
-void main(){
-  runApp(   Builder(
-    builder: (context) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            textTheme: GoogleFonts.openSansTextTheme(
-              Theme.of(context).textTheme,
-            ),
-          ),
-        home: AccountScreen(),
-      );
-    }
+void main() {
+  runApp(const MaterialApp(
+    home: SplashScreen(),
   ));
 }
