@@ -10,7 +10,7 @@ class SignUpScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 255, 123, 0),
+          backgroundColor: const Color.fromARGB(255, 244, 126, 55),
           actions: [
             IconButton(
               icon: const Icon(
@@ -24,26 +24,32 @@ class SignUpScreen extends StatelessWidget {
             ),
           ],
         ),
-        backgroundColor: const Color.fromARGB(255, 255, 123, 0),
+        backgroundColor: Color.fromARGB(255, 244, 126, 55),
         body: Stack(
           children: [
             // Orange background with text
-            const Padding(
-              padding: EdgeInsets.only(left: 40, top: 10),
+            Padding(
+              padding: const EdgeInsets.only(left: 40, top: 10),
               child: Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(
+                    const Text(
                       "Welcome",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
                           color: Colors.white),
                     ),
-                    Text(
+                    const Text(
                       "Glad to meet you",
                       style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                    Container(
+                      alignment: Alignment.bottomRight,
+                      height: 150,
+                      width: 150,
+                      child: Image.asset("assets/images/signin.png"),
                     ),
                   ],
                 ),
@@ -121,22 +127,25 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "By signing in, you agree to the ",
-                            style: TextStyle(
-                              color: Colors.grey,
+                      RichText(
+                        textAlign: TextAlign.center,
+                        text: const TextSpan(
+                          children: [
+                            TextSpan(
+                              text: "By signing in, you agree to the ",
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
                             ),
-                          ),
-                          Text(
-                            "Terms & Conditions",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                            TextSpan(
+                              text: "Terms & Conditions",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 116, 115, 115)
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
