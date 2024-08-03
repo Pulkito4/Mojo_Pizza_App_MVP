@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+//import 'package:mojo_pizza_app_mvp/modules/referral/pages/referral_screen.dart';
 
 import 'modules/account/views/pages/account_screen.dart';
 import 'modules/splash/views/pages/splash_screen.dart';
@@ -25,3 +26,10 @@ void main() {
     home: SplashScreen(),
   ));
 }
+
+
+// void main() {
+//   runApp(const MaterialApp(
+//     home: Referral(),
+//   ));
+// }
