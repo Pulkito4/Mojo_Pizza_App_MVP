@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mojo_pizza_app_mvp/modules/referral/pages/referral_screen.dart';
 
 import 'modules/account/views/pages/account_screen.dart';
+import 'modules/home/views/pages/home_screen.dart';
 import 'modules/splash/views/pages/splash_screen.dart';
 
 // import 'package:mojo_pizza_app_mvp/modules/adaptive_layout/adaptive_layout.dart';
@@ -29,7 +30,7 @@ import 'modules/splash/views/pages/splash_screen.dart';
 
 
 void main() {
-  runApp(const MaterialApp(
-    home: Referral(),
+  runApp( MaterialApp(
+    home: HomeScreen(),
   ));
 }

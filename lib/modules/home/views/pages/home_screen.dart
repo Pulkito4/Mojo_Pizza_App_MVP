@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../../account/views/pages/account_screen.dart';
+import '../../../homescreen/pages/homescreen.dart';
+import '../../../referral/pages/referral_screen.dart';
+
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   static const IconData gift = IconData(0xf689,
@@ -38,11 +42,10 @@ class HomeScreen extends StatelessWidget {
   ];
 
   final screens = const [
-    'HomeScreen',
-    'Offer Screen',
-    'EatClub Screen',
-    'Free Pizza Screen',
-    'Acount Screen',
+    Homescreen(),
+   
+    Referral(),
+    AccountScreen(),
   ];
 
   @override
@@ -51,7 +54,7 @@ class HomeScreen extends StatelessWidget {
       body: ValueListenableBuilder<int>(
         valueListenable: _currentPageIndex,
         builder: (context, index, _) {
-          return Center(child: Text(screens[index]));
+          return screens[index];
         },
       ),
       bottomNavigationBar: NavigationBarTheme(
