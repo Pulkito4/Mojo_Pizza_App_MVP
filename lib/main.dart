@@ -1,5 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mojo_pizza_app_mvp/firebase_options.dart';
+import 'package:mojo_pizza_app_mvp/menutester.dart';
 import 'package:mojo_pizza_app_mvp/modules/referral/pages/referral_screen.dart';
 
 import 'modules/account/views/pages/account_screen.dart';
@@ -27,9 +30,20 @@ import 'modules/splash/views/pages/splash_screen.dart';
   ));
 } */
 
-
+/* 
 void main() {
   runApp(const MaterialApp(
     home: Referral(),
+  ));
+} */
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(const MaterialApp(
+    home: Menutester(),
   ));
 }
