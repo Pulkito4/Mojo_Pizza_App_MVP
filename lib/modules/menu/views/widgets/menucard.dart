@@ -31,7 +31,7 @@ class Menucard extends StatelessWidget {
         child: Center(
           child: SizedBox(
             width: screenWidth,
-            height: screenHeight * 0.55,
+            height: screenHeight * 0.53,
             child: Stack(
               children: [
                 ClipRRect(
@@ -47,7 +47,7 @@ class Menucard extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 189, bottom: 15),
                   //text container
                   child: Container(
-                    height: screenHeight * 0.45,
+                    height: screenHeight * 0.42,
                     width: screenWidth,
                     color: const Color.fromARGB(255, 255, 255, 255),
                     child: Padding(
