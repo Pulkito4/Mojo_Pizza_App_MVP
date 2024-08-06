@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mojo_pizza_app_mvp/firebase_options.dart';
 import 'package:mojo_pizza_app_mvp/menutester.dart';
+import 'package:mojo_pizza_app_mvp/modules/menu/views/pages/menu_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/referral/pages/referral_screen.dart';
 
 import 'modules/account/views/pages/account_screen.dart';
@@ -45,6 +46,6 @@ Future<void> main() async {
   );
 
   runApp(const MaterialApp(
-    home: Menutester(),
+    home: MenuScreen(),
   ));
 }

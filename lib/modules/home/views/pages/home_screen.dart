@@ -40,26 +40,7 @@ class HomeScreen extends StatelessWidget {
       selectedIcon: Icons.person,
       label: "Account",
     ),
-    /* NavigationDestination(
-      icon: Icon(Icons.percent_outlined, color: Colors.black),
-      selectedIcon: Icon(Icons.percent, color: Colors.black),
-      label: 'Offers',
-    ),
-    NavigationDestination(
-      icon: Icon(Icons.fastfood_outlined, color: Colors.black),
-      selectedIcon: Icon(Icons.fastfood, color: Colors.black),
-      label: 'EatClub',
-    ),
-    NavigationDestination(
-      icon: Icon(CupertinoIcons.gift, color: Colors.black),
-      selectedIcon: Icon(CupertinoIcons.gift_fill, color: Colors.black),
-      label: 'Free Pizza',
-    ),
-    NavigationDestination(
-      icon: Icon(Icons.person_outline, color: Colors.black),
-      selectedIcon: Icon(Icons.person, color: Colors.black),
-      label: 'Account',
-    ), */
+    
   ];
 
   final screens = const [
