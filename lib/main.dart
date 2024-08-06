@@ -8,6 +8,9 @@ import 'package:mojo_pizza_app_mvp/modules/offerScreen/all%20offers/allOffers_sc
 import 'package:mojo_pizza_app_mvp/modules/offerScreen/freebies/freebies.dart';
 import 'package:mojo_pizza_app_mvp/modules/offerScreen/freebies/umbrella.dart';
 import 'package:mojo_pizza_app_mvp/modules/offerScreen/freebies/umbrella1.dart';
+import 'package:mojo_pizza_app_mvp/firebase_options.dart';
+import 'package:mojo_pizza_app_mvp/menutester.dart';
+import 'package:mojo_pizza_app_mvp/modules/menu/views/pages/menu_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/referral/pages/referral_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/sign_up_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/offerScreen/offerScreen.dart';
@@ -38,11 +41,24 @@ import 'modules/splash/views/pages/splash_screen.dart';
   ));
 } */
 
-void main() {
+/* void main() {
   runApp(MaterialApp(
     // home: Referral(),
     home: Offerscreen()
     // Offerscreen(),
+  runApp( MaterialApp(
+    home: HomeScreen(),
+  ));
+} */
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(const MaterialApp(
+    home: MenuScreen(),
   ));
 }
 

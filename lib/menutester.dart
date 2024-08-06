@@ -4,13 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class Menutester extends StatelessWidget {
-  const Menutester({super.key});
+  final String category;
+  const Menutester({super.key, required this.category});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('menu').doc("Category").collection("value fun pizza").snapshots(),
+        stream: FirebaseFirestore.instance.collection('menu').doc("Category").collection(category).snapshots(),
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
