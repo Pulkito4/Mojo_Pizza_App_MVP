@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class Flatoff extends StatelessWidget {
-  const Flatoff({super.key});
+  // const Flatoff({super.key});
 
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    return Scaffold(
-      body: SafeArea(
+    return Container(
+      child: SafeArea(
         child: Column(
           children: [
 
@@ -16,7 +16,8 @@ class Flatoff extends StatelessWidget {
                 Text("Flat OFF", style: TextStyle(
                       color: Colors.black,
                       fontSize: 30,
-                      fontWeight: FontWeight.bold),),
+                      fontWeight: FontWeight.w500
+                      ),),
               ],
             ),
             SizedBox(

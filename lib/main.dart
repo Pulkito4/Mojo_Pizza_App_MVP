@@ -3,7 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mojo_pizza_app_mvp/modules/eatClubScreen/eatClub.dart';
 import 'package:mojo_pizza_app_mvp/modules/home/views/pages/home_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/offerScreen/all%20offers/FlatOff/flatOff.dart';
+import 'package:mojo_pizza_app_mvp/modules/offerScreen/all%20offers/allOffers_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/offerScreen/freebies/freebies.dart';
+import 'package:mojo_pizza_app_mvp/modules/offerScreen/freebies/umbrella.dart';
+import 'package:mojo_pizza_app_mvp/modules/offerScreen/freebies/umbrella1.dart';
 import 'package:mojo_pizza_app_mvp/modules/referral/pages/referral_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/sign_up_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/offerScreen/offerScreen.dart';
@@ -36,7 +39,7 @@ import 'modules/splash/views/pages/splash_screen.dart';
 void main() {
   runApp(MaterialApp(
     // home: Referral(),
-    home: Eatclub()
+    home: Offerscreen()
     // Offerscreen(),
   ));
 }
