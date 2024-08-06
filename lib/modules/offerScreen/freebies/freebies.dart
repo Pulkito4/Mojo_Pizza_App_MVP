@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:mojo_pizza_app_mvp/modules/offerScreen/freebies/umbrella.dart';
+// import 'package:mojo_pizza_app_mvp/modules/offerScreen/freebies/umbrella.dart';
 
 class Freebies extends StatelessWidget {
   // const Freebies({super.key});
@@ -30,8 +30,8 @@ class Freebies extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Umbrella()));
+                /* Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Umbrella())); */
               },
               child: Container(
                 alignment: Alignment.centerLeft,

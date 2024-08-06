@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:mojo_pizza_app_mvp/modules/menu/views/pages/menu_screen.dart';
 
 class Midcards extends StatefulWidget {
   final String imgpath;
@@ -20,7 +20,7 @@ class _MidcardsState extends State<Midcards> {
     double screenWidth=MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: (){
-       // Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
+       Navigator.push(context, MaterialPageRoute(builder: (context)=>const MenuScreen()));
       },
       child: Card(
         shape: RoundedRectangleBorder(

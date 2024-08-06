@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mojo_pizza_app_mvp/menutester.dart';
 
 import '../widgets/menu_items.dart';
 

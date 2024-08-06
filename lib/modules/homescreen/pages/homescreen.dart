@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import '../../homescreen/widgets/bigcards.dart';
 import '../../homescreen/widgets/midcards.dart';
 import '../../homescreen/widgets/topcards.dart';
@@ -61,7 +60,7 @@ class _HomescreenState extends State<Homescreen> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
          child: Padding(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child:  Column(
             children: [
       
@@ -76,7 +75,7 @@ class _HomescreenState extends State<Homescreen> {
                   
                   children: [
                     Card(
-                      color:  Color.fromARGB(255, 239, 217, 202),
+                      color:  const Color.fromARGB(255, 239, 217, 202),
                       child:SizedBox(
                         height: screenHeight*0.12,
                         width: screenWidth*0.76,
