@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../account/views/pages/account_screen.dart';
 import '../../../homescreen/pages/homescreen.dart';
 import '../../../referral/pages/referral_screen.dart';
+import '../widgets/bottom_navigation_icon.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -14,12 +15,32 @@ class HomeScreen extends StatelessWidget {
   final ValueNotifier<int> _currentPageIndex = ValueNotifier<int>(0);
 
   final _destinations = const [
-    NavigationDestination(
-      icon: Icon(Icons.home_outlined, color: Colors.black),
-      selectedIcon: Icon(Icons.home, color: Colors.black),
-      label: 'Home',
+    BottomNavigationIcon(
+      icon: Icons.home_outlined,
+      selectedIcon: Icons.home,
+      label: "Home",
     ),
-    NavigationDestination(
+    BottomNavigationIcon(
+      icon: Icons.percent_outlined,
+      selectedIcon: Icons.percent,
+      label: "Offers",
+    ),
+    BottomNavigationIcon(
+      icon: Icons.fastfood_outlined,
+      selectedIcon: Icons.fastfood,
+      label: "EatClub",
+    ),
+    BottomNavigationIcon(
+      icon: CupertinoIcons.gift,
+      selectedIcon: CupertinoIcons.gift_fill,
+      label: "Free Pizza",
+    ),
+    BottomNavigationIcon(
+      icon: Icons.person_outline,
+      selectedIcon: Icons.person,
+      label: "Account",
+    ),
+    /* NavigationDestination(
       icon: Icon(Icons.percent_outlined, color: Colors.black),
       selectedIcon: Icon(Icons.percent, color: Colors.black),
       label: 'Offers',
@@ -38,7 +59,7 @@ class HomeScreen extends StatelessWidget {
       icon: Icon(Icons.person_outline, color: Colors.black),
       selectedIcon: Icon(Icons.person, color: Colors.black),
       label: 'Account',
-    ),
+    ), */
   ];
 
   final screens = const [
