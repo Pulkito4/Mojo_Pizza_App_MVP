@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help_support_screen.dart';
+import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/sign_up_screen.dart';
 
 import '../widgets/account_page_card.dart';
 
@@ -41,7 +42,13 @@ class AccountScreen extends StatelessWidget {
 
                   // Login Button
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) =>  SignUpScreen(),
+                        ),
+                      );
+                    },
                     style: CustomButtonStyles.orangeButton.copyWith(
                       fixedSize: WidgetStateProperty.all<Size>(
                         const Size(100, 30),

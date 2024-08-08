@@ -1,30 +1,38 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+import '../../../../shared/services/google_oauth.dart';
+import '../../../home/views/pages/home_screen.dart';
 
+class SignUpScreen extends StatelessWidget {
+   SignUpScreen({super.key});
+
+  final GoogleOauth _auth = GoogleOauth();
+
+  _signInWithGoogle(BuildContext context) async {
+    try {
+      UserCredential userCred = await _auth.signInWithGoogle();
+      print("USER CREDENTIAL: $userCred");
+      if (userCred.user != null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) =>  HomeScreen()), // Navigate to the next screen
+        );
+      }
+    } catch (e) {
+      print("Error signing in with Google: $e");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 244, 126, 55),
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.close,
-                color: Colors.white,
-                size: 30,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
         ),
-        backgroundColor: Color.fromARGB(255, 244, 126, 55),
+        backgroundColor: const Color.fromARGB(255, 244, 126, 55),
         body: Stack(
           children: [
             // Orange background with text
@@ -116,10 +124,14 @@ class SignUpScreen extends StatelessWidget {
                           ),
                         ],
                       ),
+
+                      // Google sign in button
                       const SizedBox(height: 20),
                       SignInButton(
                         Buttons.google,
-                        onPressed: () {},
+                        onPressed: () {
+                          _signInWithGoogle(context);
+                        },
                         shape: const BeveledRectangleBorder(
                           side: BorderSide(
                             color: Colors.grey,
