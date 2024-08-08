@@ -5,8 +5,8 @@ import '../../../account/views/pages/account_screen.dart';
 import '../../../homescreen/pages/homescreen.dart';
 import '../../../referral/pages/referral_screen.dart';
 import '../widgets/bottom_navigation_icon.dart';
-import '../../../offerScreen/offerScreen.dart';
-import '../../../eatClubScreen/eatClub.dart';
+import '../../../offerScreen/views/pages/offerScreen.dart';
+import '../../../eatClubScreen/views/pages/eatClub.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/eatclub_benefit.dart';
+
 class Eatclub extends StatefulWidget {
   const Eatclub({super.key});
 
@@ -13,7 +15,7 @@ class _EatclubState extends State<Eatclub> {
 
   void RadioButtonChange(String? value) {
     setState(() {
-      selectedOption = value;
+      selectedOption = value!;
       if (selectedOption == 'Free') {
         buttonText = 'Download EATCLUB';
       } else if (selectedOption == 'paid') {
@@ -37,7 +39,7 @@ class _EatclubState extends State<Eatclub> {
               left: 0,
               right: 0,
               child: ClipRRect(
-                  borderRadius: BorderRadius.vertical(
+                  borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(30), // Rounded top edges
                   ),
                   child: Image.asset(
@@ -47,39 +49,38 @@ class _EatclubState extends State<Eatclub> {
                     fit: BoxFit.cover,
                   ))),
           Positioned(
-              top: screenSize.height * 0.11,
-              left: screenSize.width * 0.05,
-              child: Container(
-                  child: Row(
-                children: [
-                  Container(
-                      width: screenSize.width * 0.6,
-                      child: Text(
-                        "Avail benefits on Partner Brands",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 22),
-                      )),
-                  ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(10), // Button shape
-                        ),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+            top: screenSize.height * 0.11,
+            left: screenSize.width * 0.05,
+            child: Row(
+              children: [
+                SizedBox(
+                    width: screenSize.width * 0.6,
+                    child: const Text(
+                      "Avail benefits on Partner Brands",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 22),
+                    )),
+                ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10), // Button shape
                       ),
-                      child: Text(
-                        "Install EATCLUB",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            color: Colors.black,
-                            fontSize: 15),
-                      ))
-                ],
-              ))),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 8),
+                    ),
+                    child: const Text(
+                      "Install EATCLUB",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          color: Colors.black,
+                          fontSize: 15),
+                    ))
+              ],
+            ),
+          ),
           Positioned.fill(
               top: screenSize.height * 0.18,
               child: Container(
@@ -92,15 +93,15 @@ class _EatclubState extends State<Eatclub> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
-                      Text(
+                      const Text(
                         "SlashPass is now",
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.w500),
                       ),
-                      Text(
+                      const Text(
                         "EATCLUB",
                         style: TextStyle(
                             fontSize: 35, fontWeight: FontWeight.w900),
@@ -108,126 +109,39 @@ class _EatclubState extends State<Eatclub> {
                       SizedBox(
                         height: screenSize.height * 0.05,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              "assets/logos/wid1.png",
-                              height: screenSize.height * 0.09,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Flexible(
-                              child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Flat 30% OFF Everytime",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Text(
-                                      "No ifs & buts, 30% OFF means 30% OFF. No max discount cap. No minimum order.",
-                                      style: TextStyle(
-                                          fontSize: 15, color: Colors.grey),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
+                      EatclubBenefit(
+                          screenSize: screenSize,
+                          imagePath: "assets/logos/wid1.png",
+                          title: "Flat 30% OFF Everytime",
+                          description:
+                              "No ifs & buts, 30% OFF means 30% OFF. No max discount cap. No minimum order."),
+                      const SizedBox(
                         height: 20,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              "assets/logos/wid2.png",
-                              height: screenSize.height * 0.09,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Flexible(
-                              child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "ZERO Delivery/Packaging Fees",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Text(
-                                      "Just pay for what you eat. No Delivery, Packaging, or Surge Charges. No Fooling",
-                                      style: TextStyle(
-                                          fontSize: 15, color: Colors.grey),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
+                      EatclubBenefit(
+                          screenSize: screenSize,
+                          imagePath: "assets/logos/wid2.png",
+                          title: "ZERO Delivery/Packaging Fees",
+                          description:
+                              "Just pay for what you eat. No Delivery, Packaging, or Surge Charges. No Fooling"),
+                      const SizedBox(
                         height: 20,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              "assets/logos/wid3.png",
-                              height: screenSize.height * 0.09,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Flexible(
-                              child: Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Handpicked Brands ONLY",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Text(
-                                      "Select from our curated list. No more scrolling endlessly through restaurant listings, ratings & reviews",
-                                      style: TextStyle(
-                                          fontSize: 15, color: Colors.grey),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
+                      EatclubBenefit(
+                          screenSize: screenSize,
+                          imagePath: "assets/logos/wid3.png",
+                          title: "Exclusive Offers",
+                          description:
+                              "Get access to exclusive offers on top of the 30% OFF. No hidden terms & conditions"),
+                      const SizedBox(
                         height: 20,
                       ),
-                      Text(
+                      const Text(
                         "Renew Your Membership",
                         style: TextStyle(
                             fontSize: 22, fontWeight: FontWeight.w900),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Container(
@@ -235,7 +149,7 @@ class _EatclubState extends State<Eatclub> {
                         height: 2, // Height of the line (thickness)
                         color: Colors.black, // Color of the line
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
                       Row(
@@ -272,7 +186,7 @@ class _EatclubState extends State<Eatclub> {
                                             onChanged: RadioButtonChange),
                                       ),
                                     ),
-                                    Text(
+                                    const Text(
                                       "FREE",
                                       style: TextStyle(
                                           fontSize: 25,
@@ -280,21 +194,21 @@ class _EatclubState extends State<Eatclub> {
                                               Color.fromARGB(255, 24, 207, 201),
                                           fontWeight: FontWeight.w900),
                                     ),
-                                    Text("Trial"),
-                                    Text(
+                                    const Text("Trial"),
+                                    const Text(
                                       "6 Months",
                                       style: TextStyle(color: Colors.grey),
                                     ),
                                     Container(
                                       height: screenSize.height * 0.04,
                                       width: screenSize.width * 0.4,
-                                      decoration: BoxDecoration(
+                                      decoration: const BoxDecoration(
                                         borderRadius: BorderRadius.only(
                                             bottomLeft: Radius.circular(10),
                                             bottomRight: Radius.circular(10)),
                                         color: Colors.black,
                                       ),
-                                      child: Column(
+                                      child: const Column(
                                         children: [
                                           Text(
                                             "Only On",
@@ -345,20 +259,20 @@ class _EatclubState extends State<Eatclub> {
                                             onChanged: RadioButtonChange),
                                       ),
                                     ),
-                                    Text(
+                                    const Text(
                                       "₹49",
                                       style: TextStyle(
                                           fontSize: 30,
                                           fontWeight: FontWeight.w900),
                                     ),
-                                    Text(
+                                    const Text(
                                       "₹399",
                                       style: TextStyle(
                                         fontSize: 20,
                                         decoration: TextDecoration.lineThrough,
                                       ),
                                     ),
-                                    Text(
+                                    const Text(
                                       "12 Months",
                                       style: TextStyle(
                                         color: Colors.grey,
@@ -372,7 +286,7 @@ class _EatclubState extends State<Eatclub> {
                       SizedBox(
                         height: screenSize.height * 0.02,
                       ),
-                      Container(
+                      SizedBox(
                         width: screenSize.width * 0.9,
                         height: screenSize.height * 0.05,
                         child: ElevatedButton(
@@ -385,13 +299,13 @@ class _EatclubState extends State<Eatclub> {
                                 )),
                             child: Text(
                               buttonText,
-                              style: TextStyle(fontSize: 16),
+                              style: const TextStyle(fontSize: 16),
                             )),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 60,
                       ),
-                      Row(
+                      const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
@@ -401,7 +315,7 @@ class _EatclubState extends State<Eatclub> {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Wrap(
@@ -463,17 +377,17 @@ class _EatclubState extends State<Eatclub> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            const Text(
                               "Avail Benefits on Partner Brands",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
-                            Container(
+                            SizedBox(
                               width: screenSize.width * 0.9,
                               height: screenSize.height * 0.05,
                               child: ElevatedButton(
@@ -484,7 +398,7 @@ class _EatclubState extends State<Eatclub> {
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(5),
                                       )),
-                                  child: Text(
+                                  child: const Text(
                                     "Install EATCLUB",
                                     style: TextStyle(fontSize: 16),
                                   )),
