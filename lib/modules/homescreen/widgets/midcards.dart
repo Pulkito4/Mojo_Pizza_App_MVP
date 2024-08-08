@@ -29,7 +29,7 @@ class _MidcardsState extends State<Midcards> {
         color: Colors.transparent,
         child: SizedBox(
           height: screenHeight*0.2,
-          width: screenWidth*0.43,
+          width: screenWidth*0.41,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.asset(widget.imgpath,

@@ -31,7 +31,7 @@ class Menucard extends StatelessWidget {
         child: Center(
           child: SizedBox(
             width: screenWidth,
-            height: screenHeight * 0.53,
+            height: screenHeight * 0.49,
             child: Stack(
               children: [
                 ClipRRect(
@@ -47,7 +47,7 @@ class Menucard extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 189, bottom: 15),
                   //text container
                   child: Container(
-                    height: screenHeight * 0.42,
+                    height: screenHeight * 0.47,
                     width: screenWidth,
                     color: const Color.fromARGB(255, 255, 255, 255),
                     child: Padding(
@@ -85,9 +85,10 @@ class Menucard extends StatelessWidget {
                           Expanded(
                             child: Text(
                               description,
-                              maxLines: 4, //********** description
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 3, //********** description
                               style: TextStyle(
-                                  fontSize: textSize * 0.8,
+                                  fontSize: textSize * 0.85,
                                   color: Colors.grey[600],
                                   fontWeight: FontWeight.w600,
                                   fontStyle: FontStyle.italic),
