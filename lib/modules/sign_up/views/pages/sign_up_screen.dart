@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,6 +34,16 @@ class SignUpScreen extends StatelessWidget {
     } catch (e) {
       print("Error signing in with Google: $e");
     }
+  }
+
+  Future<bool> _checkIfPhoneExists(String phoneNumber) async {
+    final QuerySnapshot result = await FirebaseFirestore.instance
+        .collection('users')
+        .where('phone', isEqualTo: phoneNumber)
+        .limit(1)
+        .get();
+    final List<DocumentSnapshot> documents = result.docs;
+    return documents.isNotEmpty;
   }
 
   // _signInWithPhoneNumber(BuildContext context) async {
@@ -145,8 +156,11 @@ class SignUpScreen extends StatelessWidget {
                       const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () async {
+                           String phoneNumber = _phoneController.text.trim();
+                            bool phoneExists = await _checkIfPhoneExists(phoneNumber);
+                            print(phoneExists);
                           // _signInWithPhoneNumber(context);
-                          await FirebaseAuth.instance.verifyPhoneNumber(
+                          (phoneExists)? await FirebaseAuth.instance.verifyPhoneNumber(
                             verificationCompleted:
                                 (PhoneAuthCredential credential) {},
                             verificationFailed: (FirebaseAuthException ex) {},
@@ -162,7 +176,13 @@ class SignUpScreen extends StatelessWidget {
                             codeAutoRetrievalTimeout:
                                 (String verificationid) {},
                             phoneNumber: _phoneController.text.toString(),
-                          );
+                          ): Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CreateAccountScreen(
+                                            phoneNumber: _phoneController.text.toString(),
+                                          )));
+                          
                         },
                         style: CustomButtonStyles.orangeButton,
                         child: const Text("Continue"),
