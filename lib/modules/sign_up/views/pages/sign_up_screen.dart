@@ -1,13 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
+import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/create_account_screen.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
 import '../../../../shared/services/google_oauth.dart';
 import '../../../home/views/pages/home_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
-   SignUpScreen({super.key});
+  SignUpScreen({super.key});
+  final TextEditingController _phoneController =
+      TextEditingController(text: "+91");
 
   final GoogleOauth _auth = GoogleOauth();
 
@@ -18,13 +22,16 @@ class SignUpScreen extends StatelessWidget {
       if (userCred.user != null) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) =>  HomeScreen()), // Navigate to the next screen
+          MaterialPageRoute(
+              builder: (context) =>
+                  HomeScreen()), // Navigate to the next screen
         );
       }
     } catch (e) {
       print("Error signing in with Google: $e");
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -92,16 +99,41 @@ class SignUpScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 10),
-                      const TextField(
-                          decoration: InputDecoration(
-                        labelText: "Phone Number",
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
+                      TextField(
+                        controller: _phoneController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(
+                            13,
+                          ), // +91 (3 chars) + 10 digits
+                        ],
+                        decoration: const InputDecoration(
+                          labelText: "Phone Number",
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
                         ),
-                      )),
+                        onTap: () {
+                          // Set the cursor position after +91
+                          _phoneController.selection =
+                              TextSelection.fromPosition(
+                            TextPosition(offset: _phoneController.text.length),
+                          );
+                        },
+                      ),
                       const SizedBox(height: 20),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          // Navigate to the next screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CreateAccountScreen(
+                                      phoneNumber: _phoneController.text,
+                                    )),
+                          );
+                        },
                         style: CustomButtonStyles.orangeButton,
                         child: const Text("Continue"),
                       ),
@@ -152,9 +184,8 @@ class SignUpScreen extends StatelessWidget {
                             TextSpan(
                               text: "Terms & Conditions",
                               style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 116, 115, 115)
-                              ),
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 116, 115, 115)),
                             ),
                           ],
                         ),

@@ -43,6 +43,7 @@ dependencies:
   dotted_border: ^2.1.0
   google_sign_in: ^6.2.1
   firebase_auth: ^4.16.0
+  pin_code_fields: ^8.0.1
 
 dev_dependencies:
   flutter_test:
