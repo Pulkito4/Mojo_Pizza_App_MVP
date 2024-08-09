@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/create_account_screen.dart';
+import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/enter_phone.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/otp_screen.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
@@ -24,16 +25,59 @@ class SignUpScreen extends StatelessWidget {
       UserCredential userCred = await _auth.signInWithGoogle();
       print("USER CREDENTIAL: $userCred");
       if (userCred.user != null) {
+        String email = userCred.user!.email!;
+        bool userExists = await _checkIfUserExists(email);
+        if (!userExists) {
+          await _addUserToFirestore(userCred);
+        }
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) =>
-                  HomeScreen()), // Navigate to the next screen
+              builder: (context) => EnterPhone(
+                    onPhoneNumberEntered: (phoneNumber) async {
+                      await _updateUserPhoneNumber(
+                          userCred.user!.email!, phoneNumber);
+                    },
+                  )), // Navigate to the next screen
         );
       }
     } catch (e) {
       print("Error signing in with Google: $e");
     }
+  }
+
+  Future<void> _updateUserPhoneNumber(String email, String phoneNumber) async {
+    final QuerySnapshot result = await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: email)
+        .limit(1)
+        .get();
+    if (result.docs.isNotEmpty) {
+      final docId = result.docs.first.id;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(docId)
+          .update({'phone': phoneNumber});
+    }
+  }
+
+  Future<void> _addUserToFirestore(UserCredential userCred) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'email': userCred.user!.email,
+      'name': userCred.user!.displayName,
+      'password': "",
+      'phone': userCred.user!.phoneNumber,
+    });
+  }
+
+  Future<bool> _checkIfUserExists(String email) async {
+    final QuerySnapshot result = await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: email)
+        .limit(1)
+        .get();
+    final List<DocumentSnapshot> documents = result.docs;
+    return documents.isNotEmpty;
   }
 
   Future<bool> _checkIfPhoneExists(String phoneNumber) async {
@@ -156,33 +200,38 @@ class SignUpScreen extends StatelessWidget {
                       const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () async {
-                           String phoneNumber = _phoneController.text.trim();
-                            bool phoneExists = await _checkIfPhoneExists(phoneNumber);
-                            print(phoneExists);
+                          String phoneNumber = _phoneController.text.trim();
+                          bool phoneExists =
+                              await _checkIfPhoneExists(phoneNumber);
+                          print(phoneExists);
                           // _signInWithPhoneNumber(context);
-                          (phoneExists)? await FirebaseAuth.instance.verifyPhoneNumber(
-                            verificationCompleted:
-                                (PhoneAuthCredential credential) {},
-                            verificationFailed: (FirebaseAuthException ex) {},
-                            codeSent:
-                                (String verificationid, int? resendtoken) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => OtpScreen(
-                                            verificationid: verificationid,
-                                          )));
-                            },
-                            codeAutoRetrievalTimeout:
-                                (String verificationid) {},
-                            phoneNumber: _phoneController.text.toString(),
-                          ): Navigator.push(
+                          (phoneExists)
+                              ? await FirebaseAuth.instance.verifyPhoneNumber(
+                                  verificationCompleted:
+                                      (PhoneAuthCredential credential) {},
+                                  verificationFailed:
+                                      (FirebaseAuthException ex) {},
+                                  codeSent: (String verificationid,
+                                      int? resendtoken) {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => OtpScreen(
+                                                  verificationid:
+                                                      verificationid,
+                                                )));
+                                  },
+                                  codeAutoRetrievalTimeout:
+                                      (String verificationid) {},
+                                  phoneNumber: _phoneController.text.toString(),
+                                )
+                              : Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => CreateAccountScreen(
-                                            phoneNumber: _phoneController.text.toString(),
+                                            phoneNumber: _phoneController.text
+                                                .toString(),
                                           )));
-                          
                         },
                         style: CustomButtonStyles.orangeButton,
                         child: const Text("Continue"),
