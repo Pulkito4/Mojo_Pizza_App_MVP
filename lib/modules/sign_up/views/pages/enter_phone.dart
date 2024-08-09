@@ -13,7 +13,7 @@ class EnterPhone extends StatefulWidget {
 }
 
 class _EnterPhoneState extends State<EnterPhone> {
-  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController(text: "+91");
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +86,7 @@ class _EnterPhoneState extends State<EnterPhone> {
                       const SizedBox(height: 20),
                       TextField(
                         controller: _phoneController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.phone,
                         decoration: const InputDecoration(
                           labelText: "Phone",
                           border: UnderlineInputBorder(

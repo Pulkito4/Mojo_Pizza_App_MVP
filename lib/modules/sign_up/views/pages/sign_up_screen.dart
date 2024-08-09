@@ -176,7 +176,7 @@ class SignUpScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       TextField(
                         controller: _phoneController,
-                        keyboardType: TextInputType.number,
+                        keyboardType: TextInputType.phone,
                         // inputFormatters: [
                         //   FilteringTextInputFormatter.digitsOnly,
                         //   LengthLimitingTextInputFormatter(
@@ -184,7 +184,7 @@ class SignUpScreen extends StatelessWidget {
                         //   ), // +91 (3 chars) + 10 digits
                         // ],
                         decoration: const InputDecoration(
-                          labelText: "Phone Number",
+                          labelText: "Phone Number (with country code)",
                           border: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey),
                           ),
