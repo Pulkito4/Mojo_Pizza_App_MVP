@@ -1,26 +1,27 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../custom_button_styles.dart';
 import '../../../../shared/services/phone_auth.dart';
+import '../../../home/views/pages/home_screen.dart';
 
 class OtpScreen extends StatefulWidget {
-    final String phoneNumber;
-
-  const OtpScreen({super.key, required this.phoneNumber});
+  // final String phoneNumber;
+  final String verificationid;
+  const OtpScreen({super.key, required this.verificationid});
 
   @override
   State<OtpScreen> createState() => _OtpScreenState();
 }
 
 class _OtpScreenState extends State<OtpScreen> {
-
   final TextEditingController _otpController = TextEditingController();
-  PhoneAuth _phoneAuth = PhoneAuth();
+  // PhoneAuth _phoneAuth = PhoneAuth();
 
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
+    return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 244, 126, 55),
@@ -85,54 +86,74 @@ class _OtpScreenState extends State<OtpScreen> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      Text("OTP has been sent on +${widget.phoneNumber}"),
+                      //Text("OTP has been sent on +${widget.phoneNumber}"),
                       const SizedBox(height: 20),
-                       PinCodeTextField(
-              controller: _otpController,
-              appContext: context,
-              length: 6,
-              keyboardType: TextInputType.number,
-              animationType: AnimationType.fade,
-              pinTheme: PinTheme(
-                shape: PinCodeFieldShape.underline,
-                fieldHeight: 50,
-                fieldWidth: 40,
-                activeFillColor: Colors.white,
-                selectedFillColor: Colors.white,
-                inactiveFillColor: Colors.white,
-              ),
-              animationDuration: const Duration(milliseconds: 300),
-              enableActiveFill: true,
-              // onCompleted: (v) {
-              //   print("Completed: $v");
-              // },
-              // onChanged: (value) {
-              //   print(value);
-              // },
-              // beforeTextPaste: (text) {
-              //   return true;
-              // },
-            ),
+                      PinCodeTextField(
+                        controller: _otpController,
+                        appContext: context,
+                        length: 6,
+                        keyboardType: TextInputType.number,
+                        animationType: AnimationType.fade,
+                        pinTheme: PinTheme(
+                          shape: PinCodeFieldShape.underline,
+                          fieldHeight: 50,
+                          fieldWidth: 40,
+                          activeFillColor: Colors.white,
+                          selectedFillColor: Colors.white,
+                          inactiveFillColor: Colors.white,
+                        ),
+                        animationDuration: const Duration(milliseconds: 300),
+                        enableActiveFill: true,
+                        // onCompleted: (v) {
+                        //   print("Completed: $v");
+                        // },
+                        // onChanged: (value) {
+                        //   print(value);
+                        // },
+                        // beforeTextPaste: (text) {
+                        //   return true;
+                        // },
+                      ),
                       const SizedBox(height: 20),
-                   ElevatedButton(
+                      ElevatedButton(
                         onPressed: () async {
-                          // if all ok then go to home screen
-                          String otp = _otpController.text.trim();
-                          if (otp.length != 6) {
+                          // // if all ok then go to home screen
+                          // String otp = _otpController.text.toString();
+                          // if (otp.length != 6) {
+                          //   ScaffoldMessenger.of(context).showSnackBar(
+                          //     const SnackBar(
+                          //       content: Text("Please enter a valid OTP"),
+                          //     ),
+                          //   );
+                          //   return;
+                          // }
+                          // await _phoneAuth.signInWithPhoneNumber(
+                          //     widget.phoneNumber, otp, context);
+                          try {
+                            PhoneAuthCredential credential =
+                                await PhoneAuthProvider.credential(
+                                    verificationId: widget.verificationid,
+                                    smsCode: _otpController.text.toString());
+                            FirebaseAuth.instance
+                                .signInWithCredential(credential)
+                                .then((value) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomeScreen()));
+                            });
+                          } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text("Please enter a valid OTP"),
+                              SnackBar(
+                                content: Text(e.toString()),
                               ),
                             );
                             return;
                           }
-                           await _phoneAuth.signInWithPhoneNumber(widget.phoneNumber, otp, context);
                         },
                         style: CustomButtonStyles.orangeButton,
                         child: const Text("Continue"),
                       ),
-
-              
                     ],
                   ),
                 ),

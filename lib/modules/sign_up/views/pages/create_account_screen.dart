@@ -12,7 +12,6 @@ class CreateAccountScreen extends StatefulWidget {
 }
 
 class _CreateAccountScreenState extends State<CreateAccountScreen> {
-
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -85,7 +84,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       const SizedBox(height: 5),
                       Text("Please fill the details for ${widget.phoneNumber}"),
                       const SizedBox(height: 10),
-                       TextField(
+                      TextField(
                         controller: _nameController,
                         keyboardType: TextInputType.name,
                         decoration: const InputDecoration(
@@ -94,10 +93,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                             borderSide: BorderSide(color: Colors.grey),
                           ),
                         ),
-                        onTap: (){},
+                        onTap: () {},
                       ),
                       const SizedBox(height: 10),
-                       TextField(
+                      TextField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
                         decoration: const InputDecoration(
@@ -106,10 +105,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                             borderSide: BorderSide(color: Colors.grey),
                           ),
                         ),
-                        onTap: (){},
+                        onTap: () {},
                       ),
                       const SizedBox(height: 10),
-                       TextField(
+                      TextField(
                         controller: _passwordController,
                         keyboardType: TextInputType.visiblePassword,
                         decoration: const InputDecoration(
@@ -118,26 +117,23 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                             borderSide: BorderSide(color: Colors.grey),
                           ),
                         ),
-                        onTap: (){},
+                        onTap: () {},
                       ),
                       const SizedBox(height: 30),
                       ElevatedButton(
                         onPressed: () {
                           // Navigate to the next screen
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => OtpScreen(
-                                      phoneNumber: widget.phoneNumber,
-                                    )),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => OtpScreen(
+                          //             phoneNumber: widget.phoneNumber,
+                          //           )),
+                          // );
                         },
                         style: CustomButtonStyles.orangeButton,
                         child: const Text("Continue"),
                       ),
-                   
-
-              
                     ],
                   ),
                 ),

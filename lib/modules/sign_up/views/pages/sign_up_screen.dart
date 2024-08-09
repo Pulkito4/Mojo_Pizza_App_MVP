@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/create_account_screen.dart';
+import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/otp_screen.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
 import '../../../../shared/services/google_oauth.dart';
@@ -15,7 +16,7 @@ class SignUpScreen extends StatelessWidget {
       TextEditingController(text: "+91");
 
   final GoogleOauth _auth = GoogleOauth();
-  final PhoneAuth _phoneAuth = PhoneAuth();
+  //final PhoneAuth _phoneAuth = PhoneAuth();
 
   _signInWithGoogle(BuildContext context) async {
     try {
@@ -34,22 +35,22 @@ class SignUpScreen extends StatelessWidget {
     }
   }
 
-  _signInWithPhoneNumber(BuildContext context) async {
-    try {
-      await _phoneAuth.signInWithPhoneNumber(
-          _phoneController.text, "", context);
-      // Navigate to the next screen
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => CreateAccountScreen(
-                  phoneNumber: _phoneController.text,
-                )),
-      );
-    } catch (e) {
-      print("Error signing in with phone number: $e");
-    }
-  }
+  // _signInWithPhoneNumber(BuildContext context) async {
+  //   try {
+  //     await _phoneAuth.signInWithPhoneNumber(
+  //         _phoneController.text, "", context);
+  //     // Navigate to the next screen
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(
+  //           builder: (context) => CreateAccountScreen(
+  //                 phoneNumber: _phoneController.text,
+  //               )),
+  //     );
+  //   } catch (e) {
+  //     print("Error signing in with phone number: $e");
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -121,12 +122,12 @@ class SignUpScreen extends StatelessWidget {
                       TextField(
                         controller: _phoneController,
                         keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          FilteringTextInputFormatter.digitsOnly,
-                          LengthLimitingTextInputFormatter(
-                            13,
-                          ), // +91 (3 chars) + 10 digits
-                        ],
+                        // inputFormatters: [
+                        //   FilteringTextInputFormatter.digitsOnly,
+                        //   LengthLimitingTextInputFormatter(
+                        //     13,
+                        //   ), // +91 (3 chars) + 10 digits
+                        // ],
                         decoration: const InputDecoration(
                           labelText: "Phone Number",
                           border: UnderlineInputBorder(
@@ -143,8 +144,25 @@ class SignUpScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
-                        onPressed: () {
-                          _signInWithPhoneNumber(context);
+                        onPressed: () async {
+                          // _signInWithPhoneNumber(context);
+                          await FirebaseAuth.instance.verifyPhoneNumber(
+                            verificationCompleted:
+                                (PhoneAuthCredential credential) {},
+                            verificationFailed: (FirebaseAuthException ex) {},
+                            codeSent:
+                                (String verificationid, int? resendtoken) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => OtpScreen(
+                                            verificationid: verificationid,
+                                          )));
+                            },
+                            codeAutoRetrievalTimeout:
+                                (String verificationid) {},
+                            phoneNumber: _phoneController.text.toString(),
+                          );
                         },
                         style: CustomButtonStyles.orangeButton,
                         child: const Text("Continue"),
