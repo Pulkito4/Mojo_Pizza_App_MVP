@@ -17,7 +17,7 @@ import 'modules/splash/views/pages/splash_screen.dart';
 // import 'package:mojo_pizza_app_mvp/modules/splash/views/pages/splash_screen.dart';
 
 /* void main() {
-  runApp(const MaterialApp(
+runApp(const MaterialApp(
     home: AdaptiveLayout(
         desktopLayout: DesktopLayout(),
         mobileLayout: MobileLayout(),

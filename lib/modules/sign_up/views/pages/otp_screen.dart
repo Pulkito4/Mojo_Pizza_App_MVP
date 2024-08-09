@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../custom_button_styles.dart';
+import '../../../../shared/services/phone_auth.dart';
 
 class OtpScreen extends StatefulWidget {
     final String phoneNumber;
@@ -15,6 +16,8 @@ class OtpScreen extends StatefulWidget {
 class _OtpScreenState extends State<OtpScreen> {
 
   final TextEditingController _otpController = TextEditingController();
+  PhoneAuth _phoneAuth = PhoneAuth();
+
   @override
   Widget build(BuildContext context) {
     return  SafeArea(
@@ -112,8 +115,18 @@ class _OtpScreenState extends State<OtpScreen> {
             ),
                       const SizedBox(height: 20),
                    ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           // if all ok then go to home screen
+                          String otp = _otpController.text.trim();
+                          if (otp.length != 6) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Please enter a valid OTP"),
+                              ),
+                            );
+                            return;
+                          }
+                           await _phoneAuth.signInWithPhoneNumber(widget.phoneNumber, otp, context);
                         },
                         style: CustomButtonStyles.orangeButton,
                         child: const Text("Continue"),

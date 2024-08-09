@@ -6,6 +6,7 @@ import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/create_account_sc
 import 'package:sign_in_button/sign_in_button.dart';
 
 import '../../../../shared/services/google_oauth.dart';
+import '../../../../shared/services/phone_auth.dart';
 import '../../../home/views/pages/home_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -14,6 +15,7 @@ class SignUpScreen extends StatelessWidget {
       TextEditingController(text: "+91");
 
   final GoogleOauth _auth = GoogleOauth();
+  final PhoneAuth _phoneAuth = PhoneAuth();
 
   _signInWithGoogle(BuildContext context) async {
     try {
@@ -29,6 +31,23 @@ class SignUpScreen extends StatelessWidget {
       }
     } catch (e) {
       print("Error signing in with Google: $e");
+    }
+  }
+
+  _signInWithPhoneNumber(BuildContext context) async {
+    try {
+      await _phoneAuth.signInWithPhoneNumber(
+          _phoneController.text, "", context);
+      // Navigate to the next screen
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => CreateAccountScreen(
+                  phoneNumber: _phoneController.text,
+                )),
+      );
+    } catch (e) {
+      print("Error signing in with phone number: $e");
     }
   }
 
@@ -125,14 +144,7 @@ class SignUpScreen extends StatelessWidget {
                       const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () {
-                          // Navigate to the next screen
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CreateAccountScreen(
-                                      phoneNumber: _phoneController.text,
-                                    )),
-                          );
+                          _signInWithPhoneNumber(context);
                         },
                         style: CustomButtonStyles.orangeButton,
                         child: const Text("Continue"),
