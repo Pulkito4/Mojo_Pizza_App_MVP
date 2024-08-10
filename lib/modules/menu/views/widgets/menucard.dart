@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mojo_pizza_app_mvp/modules/cart/views/pages/cart_screen.dart';
 
 class Menucard extends StatelessWidget {
   final String imgpath;
@@ -111,7 +112,13 @@ class Menucard extends StatelessWidget {
                                 //   width: screenWidth * 0.49,
                                 // ),
                                 OutlinedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CartScreen()));
+                                    },
                                     style: OutlinedButton.styleFrom(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:

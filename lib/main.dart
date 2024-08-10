@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mojo_pizza_app_mvp/modules/cart/views/pages/cart_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/home/views/pages/home_screen.dart';
 import 'package:mojo_pizza_app_mvp/firebase_options.dart';
 import 'package:mojo_pizza_app_mvp/modules/menu/views/pages/menu_screen.dart';

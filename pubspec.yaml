@@ -44,6 +44,8 @@ dependencies:
   google_sign_in: ^6.2.1
   firebase_auth: ^4.16.0
   pin_code_fields: ^8.0.1
+  flutter_bloc: ^8.1.6
+  equatable: ^2.0.5
 
 dev_dependencies:
   flutter_test:
