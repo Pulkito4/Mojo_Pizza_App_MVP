@@ -17,7 +17,7 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   final TextEditingController _otpController = TextEditingController();
-  // PhoneAuth _phoneAuth = PhoneAuth();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -129,6 +129,8 @@ class _OtpScreenState extends State<OtpScreen> {
                           // }
                           // await _phoneAuth.signInWithPhoneNumber(
                           //     widget.phoneNumber, otp, context);
+                          
+
                           try {
                             PhoneAuthCredential credential =
                                 await PhoneAuthProvider.credential(

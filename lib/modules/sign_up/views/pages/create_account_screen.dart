@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/otp_screen.dart';
+import 'package:mojo_pizza_app_mvp/shared/services/phone_auth.dart';
 
 import '../../../../custom_button_styles.dart';
+import '../../../../shared/services/firestore_service.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   final String phoneNumber;
@@ -15,6 +18,31 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  FirestoreService _firestoreService = FirestoreService();
+
+
+  _signInWithPhoneNumber(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.verifyPhoneNumber(
+        verificationCompleted: (PhoneAuthCredential credential) {},
+        verificationFailed: (FirebaseAuthException ex) {},
+        codeSent: (String verificationid, int? resendtoken) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => OtpScreen(
+                        verificationid: verificationid,
+                      )));
+        },
+        codeAutoRetrievalTimeout: (String verificationid) {},
+        phoneNumber: widget.phoneNumber.toString(),
+      );
+    } catch (e) {
+      print("Error signing in with phone number: $e");
+    }
+  }
+ 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -122,6 +150,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       const SizedBox(height: 30),
                       ElevatedButton(
                         onPressed: () {
+                          // Add user to firestore
+                          _firestoreService.addUserToFirestore(
+                            name: _nameController.text,
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                            phone: widget.phoneNumber,
+                          );
+                          _signInWithPhoneNumber(context);
                           // Navigate to the next screen
                           // Navigator.push(
                           //   context,

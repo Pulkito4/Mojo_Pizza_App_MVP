@@ -1,50 +1,48 @@
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
-// import '../../modules/sign_up/views/pages/otp_screen.dart';
+import '../../modules/sign_up/views/pages/otp_screen.dart';
 
-// class PhoneAuth {
-// Future<void> signInWithPhoneNumber(String phoneNumber, String smsCode, context) async {
-//   final FirebaseAuth _auth = FirebaseAuth.instance;
-//   String? verificationId;
+class PhoneAuth {
+  final TextEditingController? _phoneController;
+  late final String _phoneNumber;
 
-//   // Verify phone number
-//   await _auth.verifyPhoneNumber(
-//     phoneNumber: phoneNumber,
-//     verificationCompleted: (PhoneAuthCredential credential) async {
-//       await _auth.signInWithCredential(credential);
-//       // Handle successful authentication
-//     },
-//     verificationFailed: (FirebaseAuthException e) {
-//       // Handle error
-//       print(e.message);
-//     },
-//     codeSent: (String verId, int? resendToken) {
-//       verificationId = verId;
-//       Navigator.push(context, MaterialPageRoute(builder: (context) => OtpScreen(phoneNumber: phoneNumber),),);
-//     },
-//     codeAutoRetrievalTimeout: (String verId) {
-//       verificationId = verId;
-//     },
-//   );
+  PhoneAuth(this._phoneController){
+        _phoneNumber = _phoneController!.text.toString();
 
-//   // Ensure verificationId is not null
-//   if (verificationId != null) {
-//     // Sign in with the verification code
-//     final PhoneAuthCredential credential = PhoneAuthProvider.credential(
-//       verificationId: verificationId!,
-//       smsCode: smsCode,
-//     );
+  }
+  PhoneAuth.withPhoneNumber(this._phoneNumber) : _phoneController = null;
 
-//     try {
-//       await _auth.signInWithCredential(credential);
-//       // Handle successful authentication
-//     } catch (e) {
-//       // Handle error
-//       print(e);
-//     }
-//   } else {
-//     // Handle the case where verificationId is null
-//     print('Verification ID is null');
-//   }
-// }}
+
+  Future<void> signInWithPhoneNumber(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.verifyPhoneNumber(
+        verificationCompleted: (PhoneAuthCredential credential) {},
+        verificationFailed: (FirebaseAuthException ex) {
+          print("Verification failed: ${ex.message}");
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => OtpScreen(
+                verificationid: verificationId,
+              ),
+            ),
+          );
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {},
+        // phoneNumber: _phoneController.text.toString(),
+        phoneNumber: _phoneNumber,
+      );
+    } catch (e) {
+      print("Error signing in with phone number: $e");
+    }
+  }
+
+void updatePhoneNumber(String newPhoneNumber) {
+    _phoneNumber = newPhoneNumber;
+    // Add any additional logic needed when the phone number is updated
+  }
+
+}

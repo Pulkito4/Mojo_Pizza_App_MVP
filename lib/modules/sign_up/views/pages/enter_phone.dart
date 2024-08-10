@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mojo_pizza_app_mvp/shared/services/phone_auth.dart';
 
 import '../../../../custom_button_styles.dart';
 import 'otp_screen.dart';
@@ -14,7 +15,29 @@ class EnterPhone extends StatefulWidget {
 
 class _EnterPhoneState extends State<EnterPhone> {
   final TextEditingController _phoneController = TextEditingController(text: "+91");
+  
 
+
+  _signInWithPhoneNumber(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.verifyPhoneNumber(
+        verificationCompleted: (PhoneAuthCredential credential) {},
+        verificationFailed: (FirebaseAuthException ex) {},
+        codeSent: (String verificationid, int? resendtoken) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => OtpScreen(
+                        verificationid: verificationid,
+                      )));
+        },
+        codeAutoRetrievalTimeout: (String verificationid) {},
+        phoneNumber: _phoneController.text.toString(),
+      );
+    } catch (e) {
+      print("Error signing in with phone number: $e");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -82,7 +105,7 @@ class _EnterPhoneState extends State<EnterPhone> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      Text("you want the OTP to be sent on"),
+                      Text("you want the OTP to be sent on (with country code)"),
                       const SizedBox(height: 20),
                       TextField(
                         controller: _phoneController,
@@ -100,23 +123,24 @@ class _EnterPhoneState extends State<EnterPhone> {
                         onPressed: () async {
                           String phoneNumber = _phoneController.text;
                           widget.onPhoneNumberEntered(phoneNumber);
-                          await FirebaseAuth.instance.verifyPhoneNumber(
-                            verificationCompleted:
-                                (PhoneAuthCredential credential) {},
-                            verificationFailed: (FirebaseAuthException ex) {},
-                            codeSent:
-                                (String verificationid, int? resendtoken) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => OtpScreen(
-                                            verificationid: verificationid,
-                                          )));
-                            },
-                            codeAutoRetrievalTimeout:
-                                (String verificationid) {},
-                            phoneNumber: _phoneController.text.toString(),
-                          );
+                          _signInWithPhoneNumber(context);
+                          // await FirebaseAuth.instance.verifyPhoneNumber(
+                          //   verificationCompleted:
+                          //       (PhoneAuthCredential credential) {},
+                          //   verificationFailed: (FirebaseAuthException ex) {},
+                          //   codeSent:
+                          //       (String verificationid, int? resendtoken) {
+                          //     Navigator.push(
+                          //         context,
+                          //         MaterialPageRoute(
+                          //             builder: (context) => OtpScreen(
+                          //                   verificationid: verificationid,
+                          //                 )));
+                          //   },
+                          //   codeAutoRetrievalTimeout:
+                          //       (String verificationid) {},
+                          //   phoneNumber: _phoneController.text.toString(),
+                          // );
                           // Navigate to the next screen
                           // Navigator.push(
                           //   context,

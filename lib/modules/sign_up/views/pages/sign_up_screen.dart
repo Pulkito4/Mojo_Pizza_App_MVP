@@ -1,41 +1,51 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/create_account_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/enter_phone.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/otp_screen.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
+import '../../../../shared/services/firestore_service.dart';
 import '../../../../shared/services/google_oauth.dart';
 import '../../../../shared/services/phone_auth.dart';
 import '../../../home/views/pages/home_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
+
   SignUpScreen({super.key});
-  final TextEditingController _phoneController =
-      TextEditingController(text: "+91");
+
+    final TextEditingController _phoneController = TextEditingController(text: "+91");
 
   final GoogleOauth _auth = GoogleOauth();
-  //final PhoneAuth _phoneAuth = PhoneAuth();
+  final FirestoreService _firestoreService = FirestoreService();
+
 
   _signInWithGoogle(BuildContext context) async {
     try {
       UserCredential userCred = await _auth.signInWithGoogle();
       print("USER CREDENTIAL: $userCred");
+
+      //user already exists in database
       if (userCred.user != null) {
         String email = userCred.user!.email!;
-        bool userExists = await _checkIfUserExists(email);
+        String userName = userCred.user!.displayName!;
+        // bool userExists = await _checkIfUserExists(email);
+        bool userExists = await _firestoreService.checkIfUserExists(email);
+
+        // add user to the firestore if user not exist already 
         if (!userExists) {
-          await _addUserToFirestore(userCred);
+          await _firestoreService.addUserToFirestore(email: email, name: userName);
         }
+
+        // google oauth done -> get phone number from EnterPhone screen and update in firestore using email (callback function)
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (context) => EnterPhone(
                     onPhoneNumberEntered: (phoneNumber) async {
-                      await _updateUserPhoneNumber(
+                      await _firestoreService.updateUserPhoneNumber(
                           userCred.user!.email!, phoneNumber);
                     },
                   )), // Navigate to the next screen
@@ -46,49 +56,49 @@ class SignUpScreen extends StatelessWidget {
     }
   }
 
-  Future<void> _updateUserPhoneNumber(String email, String phoneNumber) async {
-    final QuerySnapshot result = await FirebaseFirestore.instance
-        .collection('users')
-        .where('email', isEqualTo: email)
-        .limit(1)
-        .get();
-    if (result.docs.isNotEmpty) {
-      final docId = result.docs.first.id;
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(docId)
-          .update({'phone': phoneNumber});
-    }
-  }
+  // Future<void> _updateUserPhoneNumber(String email, String phoneNumber) async {
+  //   final QuerySnapshot result = await FirebaseFirestore.instance
+  //       .collection('users')
+  //       .where('email', isEqualTo: email)
+  //       .limit(1)
+  //       .get();
+  //   if (result.docs.isNotEmpty) {
+  //     final docId = result.docs.first.id;
+  //     await FirebaseFirestore.instance
+  //         .collection('users')
+  //         .doc(docId)
+  //         .update({'phone': phoneNumber});
+  //   }
+  // }
 
-  Future<void> _addUserToFirestore(UserCredential userCred) async {
-    await FirebaseFirestore.instance.collection('users').add({
-      'email': userCred.user!.email,
-      'name': userCred.user!.displayName,
-      'password': "",
-      'phone': userCred.user!.phoneNumber,
-    });
-  }
+  // Future<void> _addUserToFirestore(UserCredential userCred) async {
+  //   await FirebaseFirestore.instance.collection('users').add({
+  //     'email': userCred.user!.email,
+  //     'name': userCred.user!.displayName,
+  //     'password': "",
+  //     'phone': userCred.user!.phoneNumber,
+  //   });
+  // }
 
-  Future<bool> _checkIfUserExists(String email) async {
-    final QuerySnapshot result = await FirebaseFirestore.instance
-        .collection('users')
-        .where('email', isEqualTo: email)
-        .limit(1)
-        .get();
-    final List<DocumentSnapshot> documents = result.docs;
-    return documents.isNotEmpty;
-  }
+  // Future<bool> _checkIfUserExists(String email) async {
+  //   final QuerySnapshot result = await FirebaseFirestore.instance
+  //       .collection('users')
+  //       .where('email', isEqualTo: email)
+  //       .limit(1)
+  //       .get();
+  //   final List<DocumentSnapshot> documents = result.docs;
+  //   return documents.isNotEmpty;
+  // }
 
-  Future<bool> _checkIfPhoneExists(String phoneNumber) async {
-    final QuerySnapshot result = await FirebaseFirestore.instance
-        .collection('users')
-        .where('phone', isEqualTo: phoneNumber)
-        .limit(1)
-        .get();
-    final List<DocumentSnapshot> documents = result.docs;
-    return documents.isNotEmpty;
-  }
+  // Future<bool> _checkIfPhoneExists(String phoneNumber) async {
+  //   final QuerySnapshot result = await FirebaseFirestore.instance
+  //       .collection('users')
+  //       .where('phone', isEqualTo: phoneNumber)
+  //       .limit(1)
+  //       .get();
+  //   final List<DocumentSnapshot> documents = result.docs;
+  //   return documents.isNotEmpty;
+  // }
 
   // _signInWithPhoneNumber(BuildContext context) async {
   //   try {
@@ -106,6 +116,29 @@ class SignUpScreen extends StatelessWidget {
   //     print("Error signing in with phone number: $e");
   //   }
   // }
+
+   
+
+  _signInWithPhoneNumber(BuildContext context) async {
+    try {
+      await FirebaseAuth.instance.verifyPhoneNumber(
+        verificationCompleted: (PhoneAuthCredential credential) {},
+        verificationFailed: (FirebaseAuthException ex) {},
+        codeSent: (String verificationid, int? resendtoken) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => OtpScreen(
+                        verificationid: verificationid,
+                      )));
+        },
+        codeAutoRetrievalTimeout: (String verificationid) {},
+        phoneNumber: _phoneController.text.toString(),
+      );
+    } catch (e) {
+      print("Error signing in with phone number: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -202,29 +235,29 @@ class SignUpScreen extends StatelessWidget {
                         onPressed: () async {
                           String phoneNumber = _phoneController.text.trim();
                           bool phoneExists =
-                              await _checkIfPhoneExists(phoneNumber);
+                              await _firestoreService.checkIfPhoneExists(phoneNumber);
                           print(phoneExists);
                           // _signInWithPhoneNumber(context);
-                          (phoneExists)
-                              ? await FirebaseAuth.instance.verifyPhoneNumber(
-                                  verificationCompleted:
-                                      (PhoneAuthCredential credential) {},
-                                  verificationFailed:
-                                      (FirebaseAuthException ex) {},
-                                  codeSent: (String verificationid,
-                                      int? resendtoken) {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => OtpScreen(
-                                                  verificationid:
-                                                      verificationid,
-                                                )));
-                                  },
-                                  codeAutoRetrievalTimeout:
-                                      (String verificationid) {},
-                                  phoneNumber: _phoneController.text.toString(),
-                                )
+                          (phoneExists)? _signInWithPhoneNumber(context)
+                              // ? await FirebaseAuth.instance.verifyPhoneNumber(
+                              //     verificationCompleted:
+                              //         (PhoneAuthCredential credential) {},
+                              //     verificationFailed:
+                              //         (FirebaseAuthException ex) {},
+                              //     codeSent: (String verificationid,
+                              //         int? resendtoken) {
+                              //       Navigator.push(
+                              //           context,
+                              //           MaterialPageRoute(
+                              //               builder: (context) => OtpScreen(
+                              //                     verificationid:
+                              //                         verificationid,
+                              //                   )));
+                              //     },
+                              //     codeAutoRetrievalTimeout:
+                              //         (String verificationid) {},
+                              //     phoneNumber: _phoneController.text.toString(),
+                              //   )
                               : Navigator.push(
                                   context,
                                   MaterialPageRoute(
