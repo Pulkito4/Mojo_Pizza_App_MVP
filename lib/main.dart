@@ -48,8 +48,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(const MaterialApp(
-    home: SplashScreen(),
+  runApp(MaterialApp(
+    home: HomeScreen(),
   ));
 }
-

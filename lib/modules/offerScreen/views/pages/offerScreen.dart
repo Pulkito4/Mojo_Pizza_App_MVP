@@ -20,25 +20,34 @@ class _OfferscreenState extends State<Offerscreen> {
       appBar: AppBar(
         title: const Text('DEALS'),
       ),
-      body: 
-      Padding(
+      body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             // Button row to switch between sections
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const SizedBox(width: 20,),
-                _buildSectionButton('AllOffers', 'All Offers'),
-                const SizedBox(width: 20,),
-        
-                _buildSectionButton('Freebies', 'Freebies'),
-                const SizedBox(width: 20,),
-                _buildSectionButton('FlatOff', 'Flat Off'),
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  _buildSectionButton('AllOffers', 'All Offers'),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  _buildSectionButton('Freebies', 'Freebies'),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  _buildSectionButton('FlatOff', 'Flat Off'),
+                ],
+              ),
             ),
-            const SizedBox(height: 25,),
+            const SizedBox(
+              height: 25,
+            ),
             Expanded(
               child: _buildSelectedSection(),
             ),
@@ -53,10 +62,12 @@ class _OfferscreenState extends State<Offerscreen> {
     bool isSelected = selectedSection == section;
     return ElevatedButton(
       style: ButtonStyle(
-        backgroundColor: WidgetStateProperty.all(
-            isSelected ? const Color.fromARGB(255, 255, 123, 0) : Colors.grey.shade300),
+        backgroundColor: WidgetStateProperty.all(isSelected
+            ? const Color.fromARGB(255, 255, 123, 0)
+            : Colors.grey.shade300),
         foregroundColor: WidgetStateProperty.all(
-            isSelected ? Colors.white : const Color.fromARGB(115, 0, 0, 0),),
+          isSelected ? Colors.white : const Color.fromARGB(115, 0, 0, 0),
+        ),
       ),
       onPressed: () {
         setState(() {
