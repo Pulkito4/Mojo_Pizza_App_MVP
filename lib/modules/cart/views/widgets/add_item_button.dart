@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mojo_pizza_app_mvp/modules/cart/bloc/cart_event.dart';
+
+import '../../bloc/cart_bloc.dart';
 
 class AddItemButton extends StatelessWidget {
-  const AddItemButton({super.key});
+  final int quantity;
+  final String pizzaId;
+  const AddItemButton({super.key, required this.quantity, required this.pizzaId});
 
   @override
   Widget build(BuildContext context) {
@@ -9,8 +15,7 @@ class AddItemButton extends StatelessWidget {
       //mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text("\$100",
-            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+     
         Container(
           width: MediaQuery.of(context).size.width * 0.30, // Small width
           height: 30.0, // Small height
@@ -24,21 +29,25 @@ class AddItemButton extends StatelessWidget {
               // Decrement Button
               IconButton(
                 icon: Icon(Icons.remove, size: 14.0), // Smaller icon
-                onPressed: () {},
+                onPressed: () {
+                  BlocProvider.of<CartBloc>(context).add(DecreaseQuantity(pizzaId));
+                },
                 padding: EdgeInsets.all(0), // Remove default padding
                 constraints: BoxConstraints(), // Remove default constraints
               ),
 
               // Item Count
               Text(
-                "1", // Default count
+                "$quantity", // Default count
                 style: TextStyle(fontSize: 14.0), // Smaller text
               ),
 
               // Increment Button
               IconButton(
                 icon: Icon(Icons.add, size: 14.0), // Smaller icon
-                onPressed: () {},
+                onPressed: () {
+ BlocProvider.of<CartBloc>(context).add(IncreaseQuantity(pizzaId));
+                },
                 padding: EdgeInsets.all(0), // Remove default padding
                 constraints: BoxConstraints(), // Remove default constraints
               ),

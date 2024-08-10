@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../custom_button_styles.dart';
+import '../../bloc/cart_bloc.dart';
+import '../../bloc/cart_event.dart';
+import '../../bloc/cart_state.dart';
 import '../widgets/add_item_button.dart';
 
 class CartScreen extends StatelessWidget {
@@ -39,7 +43,7 @@ class CartScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        ...List.generate(6, (index) {
+                       /*  ...List.generate(6, (index) {
                           return const ListTile(
                             leading: Icon(
                               Icons.local_pizza,
@@ -49,7 +53,40 @@ class CartScreen extends StatelessWidget {
                             subtitle: Text("Product Description"),
                             trailing: AddItemButton(),
                           );
-                        }),
+                        }), */
+
+                           BlocBuilder<CartBloc, CartState>(
+                        builder: (context, state) {
+                          if (state.items.isEmpty) {
+                            return const Center(child: Text('Your cart is empty'));
+                          }
+                          return Column(
+                            children: state.items.map((item) {
+                              return ListTile(
+                                leading:  Icon(
+                                  Icons.local_pizza,
+                                  color: (item.isVeg)?Colors.green : Colors.red,
+                                ),
+                                title: Text(item.pizzaName), 
+
+
+                                // add price to subtitle  
+                                subtitle: Text('Price: ₹${item.price* item.quantity}'),
+                                
+                                trailing: AddItemButton(quantity: item.quantity, pizzaId: item.pizzaId),
+                                
+                                
+                                 /* IconButton(
+                                  icon: const Icon(Icons.add),
+                                  onPressed: () {
+                                    BlocProvider.of<CartBloc>(context).add(IncreaseQuantity(item.pizzaId));
+                                  },
+                                ), */
+                              );
+                            }).toList(),
+                          );
+                        },
+                      ),
                       ],
                     ),
                   ),

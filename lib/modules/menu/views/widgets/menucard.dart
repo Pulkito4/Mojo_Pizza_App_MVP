@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mojo_pizza_app_mvp/modules/cart/bloc/cart_bloc.dart';
+import 'package:mojo_pizza_app_mvp/modules/cart/bloc/cart_event.dart';
 import 'package:mojo_pizza_app_mvp/modules/cart/views/pages/cart_screen.dart';
 
 class Menucard extends StatelessWidget {
@@ -7,6 +10,8 @@ class Menucard extends StatelessWidget {
   final String description;
   final String price;
   final bool isVeg;
+  final String pizzaId;
+  final String category;
 
   const Menucard(
       {super.key,
@@ -14,7 +19,9 @@ class Menucard extends StatelessWidget {
       required this.title,
       required this.description,
       required this.price,
-      required this.isVeg});
+      required this.isVeg,
+      required this.pizzaId,
+      required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +120,9 @@ class Menucard extends StatelessWidget {
                                 // ),
                                 OutlinedButton(
                                     onPressed: () {
+
+                                      BlocProvider.of<CartBloc>(context).add(
+                                          AddToCart(pizzaId, category, title, int.parse(price), isVeg));
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(

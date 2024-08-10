@@ -1,24 +1,26 @@
-// import 'package:equatable/equatable.dart';
+import 'package:equatable/equatable.dart';
 
-// class CartItem {
-//   final String id;
-//   final String name;
-//   final double price;
-//   final int quantity;
+class CartItem {
+  final String pizzaId;
+  final int quantity;
+  final String pizzaName;
+  final int price;
+  final bool isVeg;
 
-//   CartItem(
-//       {required this.id,
-//       required this.name,
-//       required this.price,
-//       required this.quantity});
-// }
+  CartItem({required this.pizzaId, this.quantity = 1, this.pizzaName = '', this.price = 0, this.isVeg = true});
+}
 
-// class CartState extends Equatable {
-//   final List<CartItem> cartItems;
-//   final double totalAmount;
+class CartState extends Equatable {
+  final List<CartItem> items;
 
-//   const CartState({required this.cartItems, required this.totalAmount});
+  const CartState({this.items = const []});
 
-//   @override
-//   List<Object> get props => [cartItems, totalAmount];
-// }
+  CartState copyWith({List<CartItem>? items}) {
+    return CartState(
+      items: items ?? this.items,
+    );
+  }
+
+  @override
+  List<Object> get props => [items];
+}
