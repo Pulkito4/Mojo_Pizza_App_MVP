@@ -62,17 +62,22 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   void _onDecreaseQuantity(DecreaseQuantity event, Emitter<CartState> emit) {
     final updatedItems = state.items
         .map((item) {
-          if (item.pizzaId == event.pizzaId && item.quantity > 1) {
-            return CartItem(
-                pizzaId: item.pizzaId,
-                quantity: item.quantity - 1,
-                pizzaName: item.pizzaName,
-                price: item.price,
-                isVeg: item.isVeg);
+          if (item.pizzaId == event.pizzaId) {
+            final newQuantity = item.quantity - 1;
+            if (newQuantity > 0) {
+              return CartItem(
+                  pizzaId: item.pizzaId,
+                  quantity: item.quantity - 1,
+                  pizzaName: item.pizzaName,
+                  price: item.price,
+                  isVeg: item.isVeg);
+            } else {
+              return null;
+            }
           }
           return item;
         })
-        .where((item) => item.quantity > 0)
+        .whereType<CartItem>()
         .toList();
 
     emit(state.copyWith(items: updatedItems));
