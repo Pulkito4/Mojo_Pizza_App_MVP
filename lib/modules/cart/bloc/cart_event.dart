@@ -1,13 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-
 abstract class CartEvent extends Equatable {
   const CartEvent();
 
   @override
   List<Object> get props => [];
 }
-
 
 class AddToCart extends CartEvent {
   final String pizzaId;
@@ -16,7 +14,8 @@ class AddToCart extends CartEvent {
   final int price;
   final bool isVeg;
 
-  const AddToCart(this.pizzaId, this.category, this.pizzaName, this.price, this.isVeg);
+  const AddToCart(
+      this.pizzaId, this.category, this.pizzaName, this.price, this.isVeg);
 
   @override
   List<Object> get props => [pizzaId];
@@ -30,6 +29,7 @@ class IncreaseQuantity extends CartEvent {
   @override
   List<Object> get props => [pizzaId];
 }
+
 class DecreaseQuantity extends CartEvent {
   final String pizzaId;
 
@@ -48,3 +48,8 @@ class RemoveFromCart extends CartEvent {
   List<Object> get props => [pizzaId];
 }
 
+class AddTipEvent extends CartEvent {
+  final double tip;
+
+  const AddTipEvent(this.tip);
+}

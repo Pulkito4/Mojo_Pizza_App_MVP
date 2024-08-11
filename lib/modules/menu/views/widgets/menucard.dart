@@ -120,9 +120,9 @@ class Menucard extends StatelessWidget {
                                 // ),
                                 OutlinedButton(
                                     onPressed: () {
-
                                       BlocProvider.of<CartBloc>(context).add(
-                                          AddToCart(pizzaId, category, title, int.parse(price), isVeg));
+                                          AddToCart(pizzaId, category, title,
+                                              int.parse(price), isVeg));
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(

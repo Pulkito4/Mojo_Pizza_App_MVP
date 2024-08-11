@@ -10,6 +10,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<AddToCart>(_onAddToCart);
     on<IncreaseQuantity>(_onIncreaseQuantity);
     on<DecreaseQuantity>(_onDecreaseQuantity);
+    on<AddTipEvent>(_onAddTip);
   }
 
   Future<void> _onAddToCart(AddToCart event, Emitter<CartState> emit) async {
@@ -45,7 +46,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   void _onIncreaseQuantity(IncreaseQuantity event, Emitter<CartState> emit) {
     final updatedItems = state.items.map((item) {
       if (item.pizzaId == event.pizzaId) {
-        return CartItem(pizzaId: item.pizzaId, quantity: item.quantity + 1, pizzaName: item.pizzaName, price: item.price, isVeg: item.isVeg);
+        return CartItem(
+            pizzaId: item.pizzaId,
+            quantity: item.quantity + 1,
+            pizzaName: item.pizzaName,
+            price: item.price,
+            isVeg: item.isVeg);
       }
       return item;
     }).toList();
@@ -57,7 +63,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     final updatedItems = state.items
         .map((item) {
           if (item.pizzaId == event.pizzaId && item.quantity > 1) {
-            return CartItem(pizzaId: item.pizzaId, quantity: item.quantity - 1, pizzaName: item.pizzaName, price: item.price, isVeg: item.isVeg);
+            return CartItem(
+                pizzaId: item.pizzaId,
+                quantity: item.quantity - 1,
+                pizzaName: item.pizzaName,
+                price: item.price,
+                isVeg: item.isVeg);
           }
           return item;
         })
@@ -65,5 +76,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         .toList();
 
     emit(state.copyWith(items: updatedItems));
+  }
+
+  void _onAddTip(AddTipEvent event, Emitter<CartState> emit) {
+    emit(state.copyWith(tip: event.tip));
   }
 }
