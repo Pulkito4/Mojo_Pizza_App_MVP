@@ -231,17 +231,17 @@ class CartScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Address",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
+              // const Align(
+              //   alignment: Alignment.centerLeft,
+              //   child: Text(
+              //     "Address",
+              //     style: TextStyle(
+              //       fontSize: 16,
+              //       fontWeight: FontWeight.w400,
+              //       color: Colors.grey,
+              //     ),
+              //   ),
+              // ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: ElevatedButton(
