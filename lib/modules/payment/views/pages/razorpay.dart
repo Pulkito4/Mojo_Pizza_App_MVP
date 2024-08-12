@@ -73,7 +73,7 @@ class PaymentSc {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     Fluttertoast.showToast(
-        msg: "Payment Successful : ${response.paymentId}",
+        msg: "Payment Successful : ${response.paymentId} Order Confirmed",
         toastLength: Toast.LENGTH_SHORT);
   }
 

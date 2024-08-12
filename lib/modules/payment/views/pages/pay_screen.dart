@@ -83,61 +83,67 @@ class _PayScreenState extends State<PayScreen> {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Container(
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    height: screenHeight * 0.15,
-                    width: screenWidth,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 15.0, left: 10, right: 10, bottom: 15),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(5),
-                                child: Container(
-                                  height: screenHeight * 0.035,
-                                  width: screenWidth * 0.25,
-                                  color: Color.fromARGB(255, 211, 233, 249),
-                                  child: const Row(
-                                    children: [
-                                      Icon(Icons.shopping_bag_sharp),
-                                      Text("Delivery At",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold))
-                                    ],
+                  child: Card(
+                    elevation: 4,
+                    child: Container(
+                      
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      height: screenHeight * 0.2,
+                      width: screenWidth,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 15.0, left: 10, right: 10, bottom: 15),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(5),
+                                  child: Container(
+                                    
+                                    height: screenHeight * 0.04,
+                                    width: screenWidth * 0.25,
+                                    color: Color.fromARGB(255, 211, 233, 249),
+                                    child:  Row(
+                                     
+                                      children: [
+                                        Icon(Icons.shopping_bag_sharp),
+                                        Text("Delivery At",
+                                            style: TextStyle(
+                                                fontSize: screenText*0.065,
+                                                fontWeight: FontWeight.bold))
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                              SizedBox(
-                                width: screenWidth * 0.22,
-                              ),
-                              const Text("Delivery in 20-25 mins",
+                                SizedBox(
+                                  width: screenWidth * 0.22,
+                                ),
+                                 Text("Delivery in 20-25 mins",
+                                    style: TextStyle(
+                                        color: tealcol,
+                                        fontSize: screenText*0.075,
+                                        fontWeight: FontWeight.bold,
+                                        fontStyle: FontStyle.italic)),
+                              ],
+                            ),
+                            const Divider(
+                              thickness: 0.5,
+                              color: Color.fromARGB(255, 86, 86, 86),
+                            ),
+                            Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "Vivekananda Institute of Professional Studies, Delhi-110034",
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      color: tealcol,
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.bold,
-                                      fontStyle: FontStyle.italic)),
-                            ],
-                          ),
-                          const Divider(
-                            thickness: 0.5,
-                            color: Color.fromARGB(255, 86, 86, 86),
-                          ),
-                          Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "Vivekananda Institute of Professional Studies, Delhi-110034",
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    color: Colors.grey[850],
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: screenText * 0.08),
-                              ))
-                        ],
+                                      color: Colors.grey[850],
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: screenText * 0.08),
+                                ))
+                          ],
+                        ),
                       ),
                     ),
                   ),
