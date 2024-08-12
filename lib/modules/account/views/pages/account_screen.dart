@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help_support_screen.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/help_support_screen.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/refer_and_earn.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/saved%20payment%20methods/saved_payments_methods.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/settings%20&%20personalisation/views/settings_personalisation.dart';
+import 'package:mojo_pizza_app_mvp/modules/eatClubScreen/views/pages/eatClub.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/sign_up_screen.dart';
 
 import '../widgets/account_page_card.dart';
@@ -16,8 +20,6 @@ class AccountScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-
-
               // Account Info Section  // Login section with Login Button
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -45,7 +47,7 @@ class AccountScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) =>  SignUpScreen(),
+                          builder: (context) => SignUpScreen(),
                         ),
                       );
                     },
@@ -60,11 +62,23 @@ class AccountScreen extends StatelessWidget {
               ),
               const SizedBox(height: 50),
 
+              GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Eatclub()));
+                  },
+                  child: Image.asset('assets/logos/eatclub_card.jpg')),
 
+              const SizedBox(height: 50),
 
               // Account Page Cards Section
               GestureDetector(
-                onTap: (){},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SettingsPersonalisation()));
+                },
                 child: const AccountPageCard(
                   icon: Icons.settings_outlined,
                   title: "Settings & Personalization",
@@ -75,7 +89,10 @@ class AccountScreen extends StatelessWidget {
                 color: Colors.grey,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ReferAndEarn()));
+                },
                 child: const AccountPageCard(
                   icon: Icons.people_outline_outlined,
                   title: "Refer & Earn",
@@ -97,7 +114,12 @@ class AccountScreen extends StatelessWidget {
                 color: Colors.grey,
               ),
               GestureDetector(
-                onTap: (){},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SavedPaymentsMethods()));
+                },
                 child: const AccountPageCard(
                   icon: Icons.payments_outlined,
                   title: "Saved Payment Methods",
@@ -108,7 +130,7 @@ class AccountScreen extends StatelessWidget {
                 color: Colors.grey,
               ),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => const HelpSupportScreen(),
@@ -127,4 +149,3 @@ class AccountScreen extends StatelessWidget {
     );
   }
 }
-

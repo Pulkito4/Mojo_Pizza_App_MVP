@@ -1,0 +1,78 @@
+import 'package:flutter/material.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/widgets/profile_details_textbox.dart';
+
+class ProfileDetails extends StatefulWidget {
+  const ProfileDetails({super.key});
+
+  @override
+  State<ProfileDetails> createState() => _ProfileDetailsState();
+}
+
+class _ProfileDetailsState extends State<ProfileDetails> {
+  bool isEnabled = false;
+  // bool showIcon = true;
+  @override
+  Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back)),
+            title: Text(
+              "PERSONAL INFORMATION",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+             actions: isEnabled
+            ? [
+                IconButton(
+                  icon: Icon(Icons.check),
+                  onPressed: () {
+                    // Action when the AppBar button is pressed
+                    // print('AppBar button pressed');
+                  },
+                ),
+              ]
+            : [],
+            bottom: 
+            PreferredSize(
+              preferredSize: Size.fromHeight(4),
+              child: Divider(height: 5,)),
+          ),
+          body: Column(
+            children: [
+              ProfileDetailsTextbox(title: "Name",),
+              SizedBox(height: screenSize.height*0.02,),
+              ProfileDetailsTextbox(title: "Mobile",),
+              SizedBox(height: screenSize.height*0.02,),
+              ProfileDetailsTextbox(title: "Email", ),
+              SizedBox(height: screenSize.height*0.02,),
+              ProfileDetailsTextbox(title: "My Birthday",)
+            ],
+          ),
+         floatingActionButton: SizedBox(
+          width: screenSize.width*0.5,
+          child: FloatingActionButton(
+          onPressed: () {
+            // Add your onPressed code here!
+          },
+          child: Row(
+            children: [
+              
+              Icon(Icons.delete, color: const Color.fromARGB(255, 93, 93, 93)),
+              Text("DELETE ACCOUNT"),
+            ],
+          ), // Adjust icon color for visibility
+          backgroundColor: Colors.white, // Make FAB background white
+          elevation: 0, // Remove shadow
+                ),
+        ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+        
+      ),
+    );
+  }
+}

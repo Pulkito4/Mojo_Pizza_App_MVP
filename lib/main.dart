@@ -1,6 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/help_support_screen.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/saved%20payment%20methods/saved_payments_methods.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/settings%20&%20personalisation/views/settings_personalisation.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/widgets/help_support_card.dart';
+import 'package:mojo_pizza_app_mvp/modules/eatClubScreen/views/pages/eatClub.dart';
 import 'package:mojo_pizza_app_mvp/modules/home/views/pages/home_screen.dart';
 import 'package:mojo_pizza_app_mvp/firebase_options.dart';
 import 'package:mojo_pizza_app_mvp/modules/menu/views/pages/menu_screen.dart';
@@ -26,11 +31,11 @@ import 'modules/splash/views/pages/splash_screen.dart';
 }
  */
 
-/* void main() {
+ void main() {
   runApp(const MaterialApp(
-    home: SplashScreen(),
+    home: Eatclub(),
   ));
-} */
+} 
 
 /* void main() {
   runApp(MaterialApp(
@@ -42,14 +47,14 @@ import 'modules/splash/views/pages/splash_screen.dart';
   ));
 } */
 
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
 
-  runApp(const MaterialApp(
-    home: SplashScreen(),
-  ));
-}
+//   runApp(const MaterialApp(
+//     home: SplashScreen(),
+//   ));
+// }
 
