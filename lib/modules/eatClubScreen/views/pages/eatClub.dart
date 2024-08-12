@@ -199,30 +199,34 @@ class _EatclubState extends State<Eatclub> {
                                       "6 Months",
                                       style: TextStyle(color: Colors.grey),
                                     ),
-                                    Container(
-                                      height: screenSize.height * 0.04,
-                                      width: screenSize.width * 0.4,
-                                      decoration: const BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(10),
-                                            bottomRight: Radius.circular(10)),
-                                        color: Colors.black,
-                                      ),
-                                      child: const Column(
-                                        children: [
-                                          Text(
-                                            "Only On",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 12),
-                                          ),
-                                          Text(
-                                            "EATCLUB App",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w900),
-                                          )
-                                        ],
+                                    Expanded(
+                                      child: Container(
+                                        height: screenSize.height * 0.04,
+                                        width: screenSize.width * 0.4,
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)),
+                                          color: Colors.black,
+                                        ),
+                                        child: const Column(
+                                          children: [
+                                            Text(
+                                              "Only On",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 12),
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                "EATCLUB App",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w900),
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     )
                                   ],

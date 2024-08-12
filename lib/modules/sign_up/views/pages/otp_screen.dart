@@ -17,7 +17,6 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   final TextEditingController _otpController = TextEditingController();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +128,6 @@ class _OtpScreenState extends State<OtpScreen> {
                           // }
                           // await _phoneAuth.signInWithPhoneNumber(
                           //     widget.phoneNumber, otp, context);
-                          
 
                           try {
                             PhoneAuthCredential credential =
@@ -139,10 +137,17 @@ class _OtpScreenState extends State<OtpScreen> {
                             FirebaseAuth.instance
                                 .signInWithCredential(credential)
                                 .then((value) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => HomeScreen()));
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => HomeScreen()));
+                              Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()),
+                                (Route<dynamic> route) =>
+                                    false, // This removes all the previous routes
+                              );
                             });
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(
