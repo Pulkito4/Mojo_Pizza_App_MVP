@@ -22,7 +22,7 @@ import 'modules/splash/views/pages/splash_screen.dart';
 // import 'package:mojo_pizza_app_mvp/modules/splash/views/pages/splash_screen.dart';
 
 /* void main() {
-  runApp(const MaterialApp(
+runApp(const MaterialApp(
     home: AdaptiveLayout(
         desktopLayout: DesktopLayout(),
         mobileLayout: MobileLayout(),
@@ -31,11 +31,10 @@ import 'modules/splash/views/pages/splash_screen.dart';
 }
  */
 
- void main() {
-  runApp(const MaterialApp(
-    home: Eatclub(),
-  ));
-} 
+//  void main() {
+//   runApp(const MaterialApp(
+//     home: Eatclub(),
+//   ));
 
 /* void main() {
   runApp(MaterialApp(
@@ -47,14 +46,14 @@ import 'modules/splash/views/pages/splash_screen.dart';
   ));
 } */
 
-// Future<void> main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-//   );
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+}
 
-//   runApp(const MaterialApp(
-//     home: SplashScreen(),
-//   ));
-// }
+  // runApp(MaterialApp(
+  //   home: HomeScreen(),
+  // ))
 

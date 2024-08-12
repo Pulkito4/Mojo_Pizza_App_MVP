@@ -42,62 +42,77 @@ class Freebies extends StatelessWidget {
                     'assets/images/freebies_umbrella.jpg',
                     height: 100,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Free Umbrella worth ₹300",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
-                      ),
-                      const Text(
-                        "Valid once/user",
-                        style: TextStyle(
-                          color: Colors.grey,
+                  SizedBox(
+                    width: screenSize.width * 0.05,
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Free Umbrella worth ₹300",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            CodeCopiedSnackBar.getSnackBar(),
-                          );
-                        },
-                        child: Container(
-                          width: screenSize.width * 0.5,
-                          height: screenSize.height * 0.025,
-                          color: Colors.grey[200],
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                "COPY CODE : UMBRELLA",
-                                style: TextStyle(
-                                    color: Colors.green,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Icon(
-                                Icons.copy,
-                                color: Colors.green,
-                                size: 15,
-                              ),
-                            ],
+                        const Text(
+                          "Valid once/user",
+                          style: TextStyle(
+                            color: Colors.grey,
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: screenSize.width * 0.15,
-                  ),
-                  Container(
-                    // color: Colors.black,
-                    alignment: Alignment.centerRight,
-                    child: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 20,
-                      color: Colors.grey,
+                        GestureDetector(
+                          onTap: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              CodeCopiedSnackBar.getSnackBar(),
+                            );
+                          },
+                          child: Container(
+                            width: screenSize.width * 0.9,
+                            height: screenSize.height * 0.05,
+                            color: Colors.grey[200],
+                            child: const Column(
+                              children: [
+                                Expanded(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          "COPY CODE : UMBRELLA",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.green,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                      Icon(
+                                        Icons.copy,
+                                        color: Colors.green,
+                                        size: 15,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                  )
+                  ),
+                  // SizedBox(
+                  //   width: screenSize.width * 0.15,
+                  // ),
+                  // Container(
+                  //   // color: Colors.black,
+                  //   alignment: Alignment.centerRight,
+                  //   child: const Icon(
+                  //     Icons.arrow_forward_ios,
+                  //     size: 20,
+                  //     color: Colors.grey,
+                  //   ),
+                  // )
                 ],
               ),
             ),

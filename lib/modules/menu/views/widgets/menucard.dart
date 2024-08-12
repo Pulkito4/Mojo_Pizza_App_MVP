@@ -97,32 +97,36 @@ class Menucard extends StatelessWidget {
                           const SizedBox(
                             height: 15,
                           ),
-                          Row(children: [
-                            Text("₹ $price",
-                                style: TextStyle(
-                                  color: const Color.fromARGB(255, 62, 62, 62),
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: textSize,
-                                )),
-                            SizedBox(
-                              width: screenWidth * 0.52,
-                            ),
-                            OutlinedButton(
-                                onPressed: () {},
-                                style: OutlinedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                        side: const BorderSide(
-                                            color: Color.fromARGB(
-                                                255, 99, 98, 98)))),
-                                child: Text(
-                                  "ADD",
-                                  style: TextStyle(
-                                    color: Colors.orange,
-                                    fontSize: textSize * 0.8,
-                                  ),
-                                ))
-                          ]),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("₹ $price",
+                                    style: TextStyle(
+                                      color:
+                                          const Color.fromARGB(255, 62, 62, 62),
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: textSize,
+                                    )),
+                                // SizedBox(
+                                //   width: screenWidth * 0.49,
+                                // ),
+                                OutlinedButton(
+                                    onPressed: () {},
+                                    style: OutlinedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            side: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    255, 99, 98, 98)))),
+                                    child: Text(
+                                      "ADD",
+                                      style: TextStyle(
+                                        color: Colors.orange,
+                                        fontSize: textSize * 0.8,
+                                      ),
+                                    ))
+                              ]),
                         ],
                       ),
                     ),
