@@ -59,7 +59,7 @@ Future<void> main() async {
       )
     ],
     child: MaterialApp(
-      home: MenuScreen(),
+      home: SplashScreen(),
     ),
   ));
 }

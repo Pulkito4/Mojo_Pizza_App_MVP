@@ -5,9 +5,7 @@ import '../widgets/paybtn.dart';
 
 class PayScreen extends StatefulWidget {
   final String totalpay;
-  const PayScreen({super.key,
-  required this.totalpay
-  });
+  const PayScreen({super.key, required this.totalpay});
 
   @override
   State<PayScreen> createState() => _PayScreenState();
@@ -15,10 +13,17 @@ class PayScreen extends StatefulWidget {
 
 class _PayScreenState extends State<PayScreen> {
   late PaymentSc _paymentSc;
+  void debugTotalPay(String totalPay) {
+    totalPay.runes.forEach((int rune) {
+      String character = String.fromCharCode(rune);
+      print('Character: $character Code: $rune');
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    debugTotalPay(widget.totalpay);
     _paymentSc = PaymentSc(widget.totalpay); // Initialize the payment class
   }
 
@@ -41,7 +46,7 @@ class _PayScreenState extends State<PayScreen> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           elevation: 5,
-          title:  Padding(
+          title: Padding(
             padding: EdgeInsets.only(left: 35.0, top: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,11 +142,16 @@ class _PayScreenState extends State<PayScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(
+                  height: 30,
+                ),
                 Paybtn(
                   method: "Pay with UPI",
                   onPressed: () {
-                    Navigator.push( context, MaterialPageRoute(builder: (context) => Upipay(),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Upipay(),
                       ),
                     );
                   },
@@ -152,7 +162,9 @@ class _PayScreenState extends State<PayScreen> {
                 Paybtn(
                   method: "Pay with RazorPay",
                   onPressed: () {
-                    _paymentSc.openCheckout(widget.totalpay); 
+                    String totalpay = widget.totalpay.toString();
+                    print("totalpay at payscreen $totalpay");
+                    _paymentSc.openCheckout(totalpay.toString());
                   },
                 )
               ],
