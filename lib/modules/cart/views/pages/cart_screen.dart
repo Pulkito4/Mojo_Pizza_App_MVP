@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mojo_pizza_app_mvp/modules/payment/views/pages/pay_screen.dart';
 import '../../../../custom_button_styles.dart';
 import '../../bloc/cart_bloc.dart';
 import '../../bloc/cart_event.dart';
@@ -205,17 +206,7 @@ class CartScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        }),
-        bottomNavigationBar: BottomAppBar(
+                            BottomAppBar(
           height: MediaQuery.of(context).size.height * 0.18,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -245,7 +236,14 @@ class CartScreen extends StatelessWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PayScreen(totalpay: '₹${updatedState.total}'),
+      ),
+    );
+                  },
                   style: CustomButtonStyles.orangeButton,
                   child: const Text("Place Order"),
                 ),
@@ -253,6 +251,17 @@ class CartScreen extends StatelessWidget {
             ],
           ),
         ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }),
+       
       ),
     );
   }
