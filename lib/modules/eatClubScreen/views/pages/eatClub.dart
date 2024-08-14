@@ -50,8 +50,8 @@ class _EatclubState extends State<Eatclub> {
                       fit: BoxFit.cover,
                     ))),
             Positioned(
-              top: screenSize.height * 0.11,
-              left: screenSize.width * 0.05,
+              top: screenSize.height * 0.09,
+              left: screenSize.width * 0.015,
               child: Row(
                 children: [
                   SizedBox(

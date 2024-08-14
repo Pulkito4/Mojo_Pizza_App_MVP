@@ -13,7 +13,7 @@ class SplashScreen extends StatelessWidget {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
             builder: (context) =>
-                AccountScreen()), // Replace with your next screen
+                SignUpScreen()), // Replace with your next screen
       );
     });
 

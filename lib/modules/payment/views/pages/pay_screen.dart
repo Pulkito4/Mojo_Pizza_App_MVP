@@ -60,11 +60,7 @@ class _PayScreenState extends State<PayScreen> {
                     SizedBox(
                       width: 6,
                     ),
-                    Text(
-                      "(6 items)",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
-                    )
+                    
                   ],
                 ),
                 Text("You've saved ₹400 on this order",
@@ -98,7 +94,7 @@ class _PayScreenState extends State<PayScreen> {
                                 borderRadius: BorderRadius.circular(5),
                                 child: Container(
                                   height: screenHeight * 0.035,
-                                  width: screenWidth * 0.25,
+                                  width: screenWidth * 0.28,
                                   color: Color.fromARGB(255, 211, 233, 249),
                                   child: const Row(
                                     children: [
@@ -112,12 +108,12 @@ class _PayScreenState extends State<PayScreen> {
                                 ),
                               ),
                               SizedBox(
-                                width: screenWidth * 0.22,
+                                width: screenWidth * 0.20,
                               ),
                               const Text("Delivery in 20-25 mins",
                                   style: TextStyle(
                                       color: tealcol,
-                                      fontSize: 17,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.bold,
                                       fontStyle: FontStyle.italic)),
                             ],
