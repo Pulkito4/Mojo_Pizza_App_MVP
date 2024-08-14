@@ -151,7 +151,7 @@ class _PayScreenState extends State<PayScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Upipay(),
+                        builder: (context) => Upipay(totalpay: widget.totalpay),
                       ),
                     );
                   },

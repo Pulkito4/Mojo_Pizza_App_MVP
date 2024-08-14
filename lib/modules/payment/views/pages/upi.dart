@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:upi_india/upi_india.dart';
 
 class Upipay extends StatefulWidget {
-  const Upipay({super.key});
+  final String totalpay;
+  const Upipay({super.key, required this.totalpay});
 
   @override
   State<Upipay> createState() => _UpipayState();
@@ -35,7 +36,7 @@ class _UpipayState extends State<Upipay> {
       receiverName: 'Tanishka',
       transactionRefId: 'TestingUpiIndiaPlugin',
       transactionNote: 'Not actual. Just an example.',
-      amount: 1.00,
+      amount: double.parse(widget.totalpay.replaceAll(RegExp(r'[^\d.]'), '').trim()),
     );
   }
 
