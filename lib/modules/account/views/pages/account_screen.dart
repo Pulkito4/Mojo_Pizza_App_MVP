@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/help_support_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/pages/refer_and_earn.dart';
@@ -7,6 +8,8 @@ import 'package:mojo_pizza_app_mvp/modules/account/views/pages/settings%20&%20pe
 import 'package:mojo_pizza_app_mvp/modules/eatClubScreen/views/pages/eatClub.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/sign_up_screen.dart';
 
+import '../../../sign_up/bloc/user_bloc.dart';
+import '../../../sign_up/bloc/user_state.dart';
 import '../widgets/account_page_card.dart';
 
 class AccountScreen extends StatelessWidget {
@@ -21,45 +24,47 @@ class AccountScreen extends StatelessWidget {
           child: Column(
             children: [
               // Account Info Section  // Login section with Login Button
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Your Account',
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w900,
+              BlocBuilder<UserBloc, UserState>(builder: (context, state) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          state.name,
+                          style: const TextStyle(
+                            fontSize: 30,
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Login to manage your account",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 16),
-                      ),
-                    ],
-                  ),
-
-                  // Login Button
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => SignUpScreen(),
+                        Text(
+                          state.email,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 16),
                         ),
-                      );
-                    },
-                    style: CustomButtonStyles.orangeButton.copyWith(
-                      fixedSize: WidgetStateProperty.all<Size>(
-                        const Size(100, 30),
-                      ),
+                      ],
                     ),
-                    child: const Text("LOGIN"),
-                  )
-                ],
-              ),
+
+                    // // Login Button
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     Navigator.of(context).push(
+                    //       MaterialPageRoute(
+                    //         builder: (context) => SignUpScreen(),
+                    //       ),
+                    //     );
+                    //   },
+                    //   style: CustomButtonStyles.orangeButton.copyWith(
+                    //     fixedSize: WidgetStateProperty.all<Size>(
+                    //       const Size(100, 30),
+                    //     ),
+                    //   ),
+                    //   child: const Text("LOGIN"),
+                    // )
+                  ],
+                );
+              }),
               const SizedBox(height: 50),
 
               GestureDetector(
