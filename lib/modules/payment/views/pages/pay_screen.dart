@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mojo_pizza_app_mvp/modules/sign_up/bloc/user_bloc.dart';
+import 'package:mojo_pizza_app_mvp/modules/sign_up/bloc/user_state.dart';
 import '../pages/razorpay.dart';
 import '../pages/upi.dart';
 import '../widgets/paybtn.dart';
@@ -122,17 +125,20 @@ class _PayScreenState extends State<PayScreen> {
                             thickness: 0.5,
                             color: Color.fromARGB(255, 86, 86, 86),
                           ),
-                          Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "Vivekananda Institute of Professional Studies, Delhi-110034",
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    color: Colors.grey[850],
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: screenText * 0.08),
-                              ))
+                          BlocBuilder<UserBloc, UserState>(
+                              builder: (context, state) {
+                            return Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  state.address,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      color: Colors.grey[850],
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: screenText * 0.08),
+                                ));
+                          })
                         ],
                       ),
                     ),

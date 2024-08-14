@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mojo_pizza_app_mvp/modules/sign_up/bloc/user_bloc.dart';
+import 'package:mojo_pizza_app_mvp/modules/sign_up/bloc/user_state.dart';
 import '../../../shared/services/geo_locator_service.dart';
 import '../../homescreen/widgets/bigcards.dart';
 import '../../homescreen/widgets/midcards.dart';
@@ -16,22 +19,22 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen> {
   //late final String address;
-  String currentAddress = "";
+  // String currentAddress = "";
   // final GeoLocatorService geoLocatorService = GeoLocatorService();
   //currentAddress = geoLocatorService.getCurrentAddress(currentAddress);
-
+/* 
   @override
   void initState() {
     super.initState();
     fetchAddress();
-  }
+  } */
 
-  Future<void> fetchAddress() async {
+  /* Future<void> fetchAddress() async {
     String address = await getAddressFromLocation();
     setState(() {
       currentAddress = address;
     });
-  }
+  } */
 
   // getCurrentAddress() async {
   //   String address = await getAddressFromLocation();
@@ -84,10 +87,14 @@ class _HomescreenState extends State<Homescreen> {
                     ],
                   ),
                   //link location address here
-                  Text("${currentAddress}",
-                      style: TextStyle(
-                        fontSize: 18,
-                      )),
+                  BlocBuilder<UserBloc, UserState>(
+                    builder: (context, state) {
+                      return Text(state.address,
+                          style: TextStyle(
+                            fontSize: 18,
+                          ));
+                    }
+                  ),
                   // FutureBuilder<String>(
                   //   future: getCurrentAddress(),
                   //   builder: (context, snapshot) {
