@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/bloc/user_bloc.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/bloc/user_state.dart';
+import '../../../home/views/pages/home_screen.dart';
 import '../pages/razorpay.dart';
 import '../pages/upi.dart';
 import '../widgets/paybtn.dart';
@@ -167,7 +168,11 @@ class _PayScreenState extends State<PayScreen> {
                     String totalpay = widget.totalpay.toString();
                     print("totalpay at payscreen $totalpay");
                     _paymentSc.openCheckout(totalpay.toString());
-                  },
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()),
+                        (Route<dynamic> route) => false,
+                );},
                 )
               ],
             ),
