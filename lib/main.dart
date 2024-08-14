@@ -11,6 +11,7 @@ import 'package:mojo_pizza_app_mvp/modules/eatClubScreen/views/pages/eatClub.dar
 import 'package:mojo_pizza_app_mvp/modules/home/views/pages/home_screen.dart';
 import 'package:mojo_pizza_app_mvp/firebase_options.dart';
 import 'package:mojo_pizza_app_mvp/modules/menu/views/pages/menu_screen.dart';
+import 'package:mojo_pizza_app_mvp/modules/sign_up/bloc/user_bloc.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/sign_up_screen.dart';
 
 import 'modules/account/views/pages/account_screen.dart';
@@ -59,6 +60,9 @@ Future<void> main() async {
     providers: [
       BlocProvider(
         create: (context) => CartBloc(FirebaseFirestore.instance),
+      ),
+      BlocProvider(
+        create: (context) => UserBloc(),
       )
     ],
     child: MaterialApp(
