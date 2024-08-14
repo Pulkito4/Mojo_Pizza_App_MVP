@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/saved%20payment%20methods/pages/linked_wallets.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/saved%20payment%20methods/pages/saved_cards.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/saved%20payment%20methods/pages/saved_upi_ids.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/saved%20payment%20methods/linked_wallets.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/saved%20payment%20methods/saved_cards.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/saved%20payment%20methods/saved_upi_ids.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/widgets/saved_payments_card.dart';
 
 class SavedPaymentsMethods extends StatelessWidget {

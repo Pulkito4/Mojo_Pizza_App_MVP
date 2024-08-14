@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/create_account_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/enter_phone.dart';
@@ -11,6 +12,7 @@ import '../../../../shared/services/firestore_service.dart';
 import '../../../../shared/services/google_oauth.dart';
 import '../../../../shared/services/phone_auth.dart';
 import '../../../home/views/pages/home_screen.dart';
+import '../../bloc/user_bloc.dart';
 
 class SignUpScreen extends StatelessWidget {
 
@@ -23,37 +25,40 @@ class SignUpScreen extends StatelessWidget {
 
 
   _signInWithGoogle(BuildContext context) async {
-    try {
-      UserCredential userCred = await _auth.signInWithGoogle();
-      print("USER CREDENTIAL: $userCred");
 
-      //user already exists in database
-      if (userCred.user != null) {
-        String email = userCred.user!.email!;
-        String userName = userCred.user!.displayName!;
-        // bool userExists = await _checkIfUserExists(email);
-        bool userExists = await _firestoreService.checkIfUserExists(email);
+        BlocProvider.of<UserBloc>(context).add(LoginEvent(context));
 
-        // add user to the firestore if user not exist already 
-        if (!userExists) {
-          await _firestoreService.addUserToFirestore(email: email, name: userName);
-        }
+    // try {
+    //   UserCredential userCred = await _auth.signInWithGoogle();
+    //   print("USER CREDENTIAL: $userCred");
 
-        // google oauth done -> get phone number from EnterPhone screen and update in firestore using email (callback function)
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (context) => EnterPhone(
-                    onPhoneNumberEntered: (phoneNumber) async {
-                      await _firestoreService.updateUserPhoneNumber(
-                          userCred.user!.email!, phoneNumber);
-                    },
-                  )), // Navigate to the next screen
-        );
-      }
-    } catch (e) {
-      print("Error signing in with Google: $e");
-    }
+    //   //user already exists in database
+    //   if (userCred.user != null) {
+    //     String email = userCred.user!.email!;
+    //     String userName = userCred.user!.displayName!;
+    //     // bool userExists = await _checkIfUserExists(email);
+    //     bool userExists = await _firestoreService.checkIfUserExists(email);
+
+    //     // add user to the firestore if user not exist already 
+    //     if (!userExists) {
+    //       await _firestoreService.addUserToFirestore(email: email, name: userName);
+    //     }
+
+    //     // google oauth done -> get phone number from EnterPhone screen and update in firestore using email (callback function)
+    //     Navigator.pushReplacement(
+    //       context,
+    //       MaterialPageRoute(
+    //           builder: (context) => EnterPhone(
+    //                 onPhoneNumberEntered: (phoneNumber) async {
+    //                   await _firestoreService.updateUserPhoneNumber(
+    //                       userCred.user!.email!, phoneNumber);
+    //                 },
+    //               )), // Navigate to the next screen
+    //     );
+    //   }
+    // } catch (e) {
+    //   print("Error signing in with Google: $e");
+    // }
   }
 
   // Future<void> _updateUserPhoneNumber(String email, String phoneNumber) async {
@@ -295,6 +300,7 @@ class SignUpScreen extends StatelessWidget {
                         Buttons.google,
                         onPressed: () {
                           _signInWithGoogle(context);
+                          
                         },
                         shape: const BeveledRectangleBorder(
                           side: BorderSide(
