@@ -1,19 +1,17 @@
-import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
-
-import '../../referral/widgets/ordernow.dart';
-import '../../referral/widgets/stepscard.dart';
-import '../../referral/widgets/refer_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
+import 'package:mojo_pizza_app_mvp/modules/referral/widgets/refer_widgets.dart';
+import 'package:mojo_pizza_app_mvp/modules/referral/widgets/stepscard.dart';
 
-class Referral extends StatefulWidget {
-  const Referral({super.key});
+class ReferAndEarn extends StatefulWidget {
+  const ReferAndEarn({super.key});
 
   @override
-  State<Referral> createState() => _ReferralState();
+  State<ReferAndEarn> createState() => _ReferAndEarnState();
 }
 
-class _ReferralState extends State<Referral> {
+class _ReferAndEarnState extends State<ReferAndEarn> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -37,14 +35,21 @@ class _ReferralState extends State<Referral> {
                       height: screenHeight * 0.23,
                       width: screenWidth,
                       color: Colors.black,
-                      child: const Padding(
+                      child: Padding(
                         padding: EdgeInsets.only(top: 10.0, left: 25),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: [
-                                
+                                IconButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    icon: Icon(
+                                      Icons.arrow_back,
+                                      color: Colors.white,
+                                    )),
                                 Text(
                                   "INDIA'S BIGGEST REFERRAL",
                                   style: TextStyle(

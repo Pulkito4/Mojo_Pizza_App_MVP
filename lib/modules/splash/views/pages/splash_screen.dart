@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/account_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/home/views/pages/home_screen.dart';
+import 'package:mojo_pizza_app_mvp/modules/homescreen/pages/homescreen.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/sign_up_screen.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -11,7 +13,7 @@ class SplashScreen extends StatelessWidget {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
             builder: (context) =>
-                SignUpScreen()), // Replace with your next screen
+                AccountScreen()), // Replace with your next screen
       );
     });
 
