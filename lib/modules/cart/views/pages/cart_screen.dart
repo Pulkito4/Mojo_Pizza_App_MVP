@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mojo_pizza_app_mvp/modules/payment/views/pages/pay_screen.dart';
+import 'package:mojo_pizza_app_mvp/modules/sign_up/bloc/user_bloc.dart';
+import 'package:mojo_pizza_app_mvp/modules/sign_up/bloc/user_state.dart';
 import '../../../../custom_button_styles.dart';
 import '../../bloc/cart_bloc.dart';
 import '../../bloc/cart_event.dart';
@@ -222,17 +224,20 @@ class CartScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  const Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "Address",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.grey,
+                                  BlocBuilder<UserBloc, UserState>(
+                                      builder: (context, state) {
+                                    return Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        state.address,
+                                        style: const TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.grey,
+                                        ),
                                       ),
-                                    ),
-                                  ),
+                                    );
+                                  }),
                                   SizedBox(
                                     width:
                                         MediaQuery.of(context).size.width * 0.9,
