@@ -17,7 +17,7 @@ class AddItemButton extends StatelessWidget {
       children: [
      
         Container(
-          width: MediaQuery.of(context).size.width * 0.30, // Small width
+          width: 110.0, // Small width
           height: 30.0, // Small height
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey.shade400),
@@ -28,23 +28,23 @@ class AddItemButton extends StatelessWidget {
             children: [
               // Decrement Button
               IconButton(
-                icon: Icon(Icons.remove, size: 14.0), // Smaller icon
+                icon:const Icon(Icons.remove, size: 14.0), // Smaller icon
                 onPressed: () {
                   BlocProvider.of<CartBloc>(context).add(DecreaseQuantity(pizzaId));
                 },
-                padding: EdgeInsets.all(0), // Remove default padding
-                constraints: BoxConstraints(), // Remove default constraints
+                padding: const EdgeInsets.all(0), // Remove default padding
+                constraints:const BoxConstraints(), // Remove default constraints
               ),
 
               // Item Count
               Text(
                 "$quantity", // Default count
-                style: TextStyle(fontSize: 14.0), // Smaller text
+                style: const TextStyle(fontSize: 14.0), // Smaller text
               ),
 
               // Increment Button
               IconButton(
-                icon: Icon(Icons.add, size: 14.0), // Smaller icon
+                icon: const Icon(Icons.add, size: 14.0, color:  Color.fromARGB(255, 255, 123, 0),), // Smaller icon
                 onPressed: () {
  BlocProvider.of<CartBloc>(context).add(IncreaseQuantity(pizzaId));
                 },

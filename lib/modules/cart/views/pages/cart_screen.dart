@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mojo_pizza_app_mvp/modules/payment/views/pages/pay_screen.dart';
 import '../../../../custom_button_styles.dart';
 import '../../bloc/cart_bloc.dart';
 import '../../bloc/cart_event.dart';
@@ -108,7 +109,7 @@ class CartScreen extends StatelessWidget {
                         const SizedBox(height: 10),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [0, 10, 20, 30, 50].map((tip) {
+                          children: [0, 10, 20, 50].map((tip) {
                             return ElevatedButton(
                               onPressed: () {
                                 context
@@ -205,6 +206,54 @@ class CartScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            BottomAppBar(
+                              height: MediaQuery.of(context).size.height * 0.18,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'Delivery in 26-36 min',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                  const Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "Address",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => PayScreen(
+                                                totalpay:
+                                                    '₹${updatedState.total}'),
+                                          ),
+                                        );
+                                      },
+                                      style: CustomButtonStyles.orangeButton,
+                                      child: const Text("Place Order"),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                           ],
                         )
                       ],
@@ -215,44 +264,6 @@ class CartScreen extends StatelessWidget {
             ),
           );
         }),
-        bottomNavigationBar: BottomAppBar(
-          height: MediaQuery.of(context).size.height * 0.18,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Delivery in 26-36 min',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Address",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: CustomButtonStyles.orangeButton,
-                  child: const Text("Place Order"),
-                ),
-              )
-            ],
-          ),
-        ),
       ),
     );
   }
