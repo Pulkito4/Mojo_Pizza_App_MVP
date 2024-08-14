@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../shared/services/firestore_service.dart';
+import '../../../shared/services/geo_locator_service.dart';
 import '../../../shared/services/google_oauth.dart';
 import '../views/pages/enter_phone.dart';
 import 'user_state.dart';
@@ -49,11 +50,20 @@ class UserBloc extends Bloc<UserEvent, UserState> {
                       },
                     )), // Navigate to the next screen
           );
-          emit(UserState.init(userName, email));
+
+                  String address = await fetchAddress();
+
+          emit(UserState.init(userName, email,address));
         }
       } catch (e) {
         print("Error signing in with Google: $e");
       }
     });
   }
+}
+
+
+Future<String> fetchAddress() async {
+  String address = await getAddressFromLocation();
+  return address;
 }
