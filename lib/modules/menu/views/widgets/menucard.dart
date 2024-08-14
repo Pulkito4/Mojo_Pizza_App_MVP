@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mojo_pizza_app_mvp/modules/cart/bloc/cart_bloc.dart';
+import 'package:mojo_pizza_app_mvp/modules/cart/bloc/cart_event.dart';
+import 'package:mojo_pizza_app_mvp/modules/cart/views/pages/cart_screen.dart';
+import 'package:mojo_pizza_app_mvp/modules/cart/views/widgets/add_item_button.dart';
+
+import '../../../cart/bloc/cart_state.dart';
 
 class Menucard extends StatelessWidget {
   final String imgpath;
@@ -6,6 +13,8 @@ class Menucard extends StatelessWidget {
   final String description;
   final String price;
   final bool isVeg;
+  final String pizzaId;
+  final String category;
 
   const Menucard(
       {super.key,
@@ -13,7 +22,9 @@ class Menucard extends StatelessWidget {
       required this.title,
       required this.description,
       required this.price,
-      required this.isVeg});
+      required this.isVeg,
+      required this.pizzaId,
+      required this.category});
 
   @override
   Widget build(BuildContext context) {
@@ -110,8 +121,17 @@ class Menucard extends StatelessWidget {
                                 // SizedBox(
                                 //   width: screenWidth * 0.49,
                                 // ),
-                                OutlinedButton(
-                                    onPressed: () {},
+                                /* OutlinedButton(
+                                    onPressed: () {
+                                      BlocProvider.of<CartBloc>(context).add(
+                                          AddToCart(pizzaId, category, title,
+                                              int.parse(price), isVeg));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  CartScreen(),),);
+                                    },
                                     style: OutlinedButton.styleFrom(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -125,7 +145,59 @@ class Menucard extends StatelessWidget {
                                         color: Colors.orange,
                                         fontSize: textSize * 0.8,
                                       ),
-                                    ))
+                                    ),) */
+                                BlocBuilder<CartBloc, CartState>(
+                                  builder: (context, state) {
+                                    final cartItem = state.items.firstWhere(
+                                      (item) => item.pizzaId == pizzaId,
+                                      orElse: () => CartItem(pizzaId: pizzaId, quantity: 0),
+                                    );
+                                    bool isInCart = state.items
+                                        .any((item) => item.pizzaId == pizzaId);
+                                    int quantity =
+                                        isInCart ? cartItem.quantity : 0;
+
+                                    return (isInCart)
+                                        ? AddItemButton(
+                                            quantity: quantity,
+                                            pizzaId: pizzaId)
+                                        : OutlinedButton(
+                                            onPressed: () {
+                                              BlocProvider.of<CartBloc>(context)
+                                                  .add(AddToCart(
+                                                      pizzaId,
+                                                      category,
+                                                      title,
+                                                      int.parse(price),
+                                                      isVeg));
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      CartScreen(),
+                                                ),
+                                              );
+                                            },
+                                            style: OutlinedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                                side: const BorderSide(
+                                                  color: Color.fromARGB(
+                                                      255, 99, 98, 98),
+                                                ),
+                                              ),
+                                            ),
+                                            child: Text(
+                                              "ADD",
+                                              style: TextStyle(
+                                                color: Colors.orange,
+                                                fontSize: textSize * 0.8,
+                                              ),
+                                            ),
+                                          );
+                                  },
+                                ),
                               ]),
                         ],
                       ),

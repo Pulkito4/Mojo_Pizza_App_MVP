@@ -3,7 +3,7 @@ import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/help_support_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/pages/refer_and_earn.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/pages/saved%20payment%20methods/saved_payments_methods.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/settings%20&%20personalisation/views/settings_personalisation.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/settings%20&%20personalisation/settings_personalisation.dart';
 import 'package:mojo_pizza_app_mvp/modules/eatClubScreen/views/pages/eatClub.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/sign_up_screen.dart';
 

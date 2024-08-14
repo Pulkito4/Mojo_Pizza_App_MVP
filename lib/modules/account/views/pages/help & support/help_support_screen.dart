@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/pages/eatclub_membership.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/pages/faq.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/pages/payments.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/pages/referral_and_coupons.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/pages/terms_and_conditions.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/eatclub_membership.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/faq.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/payments.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/referral_and_coupons.dart';
+import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/terms_and_conditions.dart';
 
 import '../../widgets/help_support_card.dart';
 

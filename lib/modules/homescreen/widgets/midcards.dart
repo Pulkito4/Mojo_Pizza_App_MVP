@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:mojo_pizza_app_mvp/modules/menu/views/pages/menu_screen.dart';
 
@@ -12,15 +11,18 @@ class Midcards extends StatefulWidget {
 }
 
 class _MidcardsState extends State<Midcards> {
-  
   @override
   Widget build(BuildContext context) {
-
-    double screenHeight=MediaQuery.of(context).size.height;
-    double screenWidth=MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: (){
-       Navigator.push(context, MaterialPageRoute(builder: (context)=>const MenuScreen()));
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MenuScreen(),
+          ),
+        );
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -28,15 +30,15 @@ class _MidcardsState extends State<Midcards> {
         ),
         color: Colors.transparent,
         child: SizedBox(
-          height: screenHeight*0.2,
-          width: screenWidth*0.41,
+          height: screenHeight * 0.2,
+          width: screenWidth * 0.41,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.asset(widget.imgpath,
-            fit: BoxFit.cover,
+            child: Image.asset(
+              widget.imgpath,
+              fit: BoxFit.cover,
             ),
           ),
-          
         ),
       ),
     );

@@ -52,7 +52,9 @@ class MenuItems extends StatelessWidget {
                     title: title,
                     description: description,
                     price: price.toString(),
-                    isVeg: isVeg);
+                    isVeg: isVeg,
+                    pizzaId: doc.id,
+                    category: category);
               },
             ).toList(),
           );
