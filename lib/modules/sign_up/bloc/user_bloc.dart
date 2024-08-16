@@ -18,19 +18,21 @@ class LoginEvent extends UserEvent {
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc() : super(UserState()) {
+
+    //LOGIN EVENT
     on<LoginEvent>((event, emit) async {
       GoogleOauth auth = GoogleOauth();
       FirestoreService firestoreService = FirestoreService();
 
       try {
         UserCredential userCred = await auth.signInWithGoogle();
-        print("USER CREDENTIAL: $userCred");
 
         //user already exists in database
         if (userCred.user != null) {
           String email = userCred.user!.email!;
           String userName = userCred.user!.displayName!;
-          // bool userExists = await _checkIfUserExists(email);
+
+          // check if user already exists in firestore
           bool userExists = await firestoreService.checkIfUserExists(email);
 
           // add user to the firestore if user not exist already
@@ -48,7 +50,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
                         await firestoreService.updateUserPhoneNumber(
                             userCred.user!.email!, phoneNumber);
                       },
-                    )), // Navigate to the next screen
+                    ),), // Navigate to the next screen
           );
 
                   String address = await fetchAddress();

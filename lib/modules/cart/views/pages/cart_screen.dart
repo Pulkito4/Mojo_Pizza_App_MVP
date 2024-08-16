@@ -164,14 +164,6 @@ class CartScreen extends StatelessWidget {
                                 Text("₹${deliveryCost.toString()}"),
                               ],
                             ),
-                            /* const Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text("Discount"),
-                                  Text("₹50"),
-                                ],
-                              ), */
-
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

@@ -11,8 +11,8 @@ class LinkedWallets extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back)),
-        title: Text(
+            icon: const Icon(Icons.arrow_back)),
+        title: const Text(
           "LINKED WALLETS",
           style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
         ),
@@ -23,21 +23,25 @@ class LinkedWallets extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
-              
-              children: 
-              [
+              children: [
                 Image.asset(
                   'assets/logos/download.png',
                   scale: 8,
                 ),
-                Text(
+                const Text(
                   "   Amazon Pay Balance",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                 ),
               ],
             ),
-            Text("LINK", style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600, color: Color.fromARGB(255, 22, 19, 198)),)
-            
+            const Text(
+              "LINK",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Color.fromARGB(255, 22, 19, 198),
+              ),
+            ),
           ],
         ),
       ),

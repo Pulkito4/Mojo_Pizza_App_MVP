@@ -43,7 +43,6 @@ class CartState extends Equatable {
       items: items ?? this.items,
       subTotal: double.parse(newSubtotal.toString()),
       total: double.parse(newTotal.toString()),
-      // tip: tip ?? this.tip,
       tip: newTip,
     );
   }

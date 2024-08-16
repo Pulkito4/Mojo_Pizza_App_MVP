@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/settings%20&%20personalisation/change_password.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/settings%20&%20personalisation/manage_notification.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/settings%20&%20personalisation/profile_details.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/pages/settings%20&%20personalisation/saved_addresses.dart';
-import 'package:mojo_pizza_app_mvp/modules/account/views/widgets/personalisation_card.dart';
-import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/sign_up_screen.dart';
-import 'package:mojo_pizza_app_mvp/shared/services/google_oauth.dart';
+
+import '../../../../../shared/services/google_oauth.dart';
+import '../../../../sign_up/views/pages/sign_up_screen.dart';
+import '../../widgets/personalisation_card.dart';
+import 'change_password.dart';
+import 'manage_notification.dart';
+import 'profile_details.dart';
+import 'saved_addresses.dart';
 
 class SettingsPersonalisation extends StatelessWidget {
   SettingsPersonalisation({super.key});

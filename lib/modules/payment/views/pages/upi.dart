@@ -36,20 +36,21 @@ class _UpipayState extends State<Upipay> {
       receiverName: 'Tanishka',
       transactionRefId: 'TestingUpiIndiaPlugin',
       transactionNote: 'Not actual. Just an example.',
-      amount: double.parse(widget.totalpay.replaceAll(RegExp(r'[^\d.]'), '').trim()),
+      amount: double.parse(
+          widget.totalpay.replaceAll(RegExp(r'[^\d.]'), '').trim()),
     );
   }
 
   Widget? displayUPIapps() {
     if (apps == null) {
-      return Center(child: CircularProgressIndicator());
+      return const Center(child: CircularProgressIndicator());
     } else if (apps!.isEmpty) {
-      return Center(child: Text('No UPI Apps found'));
+      return const Center(child: Text('No UPI Apps found'));
     } else {
       return Align(
         alignment: Alignment.topCenter,
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Wrap(
             children: apps!.map<Widget>((UpiApp app) {
               return GestureDetector(
@@ -58,7 +59,7 @@ class _UpipayState extends State<Upipay> {
                   setState(() {});
                 },
                 child: Container(
-                  margin: EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(10),
                   height: 100,
                   width: 100,
                   child: Column(
@@ -69,7 +70,7 @@ class _UpipayState extends State<Upipay> {
                         height: 60,
                         width: 60,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(app.name, textAlign: TextAlign.center),
                     ],
                   ),
@@ -84,29 +85,29 @@ class _UpipayState extends State<Upipay> {
 
   Widget displayTransactionStatus() {
     if (_transaction == null) {
-      return Text("Select a UPI app to initiate the transaction");
+      return const Text("Select a UPI app to initiate the transaction");
     } else {
       return FutureBuilder<UpiResponse>(
         future: _transaction,
         builder: (BuildContext context, AsyncSnapshot<UpiResponse> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           } else if (snapshot.hasError) {
             return Text("Error: ${snapshot.error}");
           } else if (snapshot.hasData) {
             UpiResponse response = snapshot.data!;
             switch (response.status) {
               case UpiPaymentStatus.SUCCESS:
-                return Text("Transaction Successful!");
+                return const Text("Transaction Successful!");
               case UpiPaymentStatus.FAILURE:
-                return Text("Transaction Failed!");
+                return const Text("Transaction Failed!");
               case UpiPaymentStatus.SUBMITTED:
-                return Text("Transaction Submitted!");
+                return const Text("Transaction Submitted!");
               default:
-                return Text("Unknown response status");
+                return const Text("Unknown response status");
             }
           } else {
-            return Text("No data");
+            return const Text("No data");
           }
         },
       );
@@ -117,7 +118,7 @@ class _UpipayState extends State<Upipay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Make Payment"),
+        title: const Text("Make Payment"),
       ),
       body: Column(
         children: [

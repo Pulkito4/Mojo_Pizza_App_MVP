@@ -1,14 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-class Topcards extends StatefulWidget {
+class Topcards extends StatelessWidget {
   const Topcards({super.key});
 
-  @override
-  State<Topcards> createState() => _TopcardsState();
-}
-
-class _TopcardsState extends State<Topcards> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;

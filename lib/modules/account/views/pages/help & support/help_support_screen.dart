@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/eatclub_membership.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/faq.dart';
@@ -28,99 +27,103 @@ class HelpSupportScreen extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
-          // bottom: const PreferredSize(
-          //   preferredSize: Size.fromHeight(1.0),
-          //   child: Divider(
-          //     color: Colors.grey,
-          //     height: 1.0,
-          //     thickness: 1.2,
-          //     indent: 16.0,
-          //     endIndent: 16.0,
-          //   ),
-          // ),
         ),
         body: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 10),
-              Text("ASSISTANCE WITH OTHER ISSUES",
+              const SizedBox(height: 10),
+              const Text("ASSISTANCE WITH OTHER ISSUES",
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.grey,
                   )),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               // Help & Support Cards
               GestureDetector(
                 onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Faq()));},
-                child: HelpSupportCard(
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Faq(),
+                    ),
+                  );
+                },
+                child: const HelpSupportCard(
                   title: "FAQs",
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 1,
                 color: Colors.grey,
               ),
               GestureDetector(
                 onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ReferralAndCoupons()));},
-                child: HelpSupportCard(
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ReferralAndCoupons(),
+                    ),
+                  );
+                },
+                child: const HelpSupportCard(
                   title: "Referrals & Coupons",
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 1,
                 color: Colors.grey,
               ),
               GestureDetector(
                 onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Payments()));},
-                child: HelpSupportCard(
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Payments(),
+                    ),
+                  );
+                },
+                child: const HelpSupportCard(
                   title: "Payment",
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 1,
                 color: Colors.grey,
               ),
               GestureDetector(
                 onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => EatclubMembership()));},
-                child: HelpSupportCard(
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const EatclubMembership(),
+                    ),
+                  );
+                },
+                child: const HelpSupportCard(
                   title: "EatClub Membership",
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 1,
                 color: Colors.grey,
               ),
               GestureDetector(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => TermsAndConditions()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const TermsAndConditions(),
+                      ),
+                    );
                   },
-                  child: HelpSupportCard(
+                  child: const HelpSupportCard(
                     title: "Terms and conditions",
                   )),
-              Divider(
+              const Divider(
                 thickness: 1,
                 color: Colors.grey,
               ),

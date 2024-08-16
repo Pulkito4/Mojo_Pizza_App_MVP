@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mojo_pizza_app_mvp/modules/offerScreen/views/widgets/flatOff.dart';
-import 'package:mojo_pizza_app_mvp/modules/offerScreen/views/widgets/allOffers_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/offerScreen/views/widgets/freebies.dart';
+
+import 'allOffers_screen.dart';
 
 class Offerscreen extends StatefulWidget {
   const Offerscreen({super.key});
@@ -85,7 +86,7 @@ class _OfferscreenState extends State<Offerscreen> {
       case 'Freebies':
         return const Freebies();
       case 'FlatOff':
-        return Flatoff();
+        return const Flatoff();
       case 'AllOffers':
       default:
         return const AlloffersScreen();

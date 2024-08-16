@@ -1,21 +1,14 @@
 // import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/widgets/custom_text_field.dart';
 
-class ChangePassword extends StatefulWidget {
+class ChangePassword extends StatelessWidget {
   const ChangePassword({super.key});
 
   @override
-  State<ChangePassword> createState() => _ChangePasswordState();
-}
-
-class _ChangePasswordState extends State<ChangePassword> {
-  @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
     double screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
         child: Scaffold(
@@ -24,12 +17,12 @@ class _ChangePasswordState extends State<ChangePassword> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back)),
-        title: Text(
+            icon: const Icon(Icons.arrow_back)),
+        title: const Text(
           "CHANGE PASSWORD",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        bottom: PreferredSize(
+        bottom: const PreferredSize(
             preferredSize: Size.fromHeight(4),
             child: Divider(
               height: 5,
@@ -39,17 +32,17 @@ class _ChangePasswordState extends State<ChangePassword> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            CustomTextField(customHintText: "Current Password"),
-            CustomTextField(customHintText: "New Password"),
-            CustomTextField(customHintText: "Confirm New Password"),
-            Spacer(),
+            const CustomTextField(customHintText: "Current Password"),
+            const CustomTextField(customHintText: "New Password"),
+            const CustomTextField(customHintText: "Confirm New Password"),
+            const Spacer(),
             Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: ElevatedButton(
                 onPressed: () {},
                 style: CustomButtonStyles.orangeButton.copyWith(
                   minimumSize: WidgetStatePropertyAll(
-                    Size( 
+                    Size(
                       screenWidth * 0.9,
                       50,
                     ),

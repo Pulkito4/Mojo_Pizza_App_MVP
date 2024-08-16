@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../custom_button_styles.dart';
-import '../../../../shared/services/phone_auth.dart';
 import '../../../home/views/pages/home_screen.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -85,8 +84,9 @@ class _OtpScreenState extends State<OtpScreen> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      //Text("OTP has been sent on +${widget.phoneNumber}"),
                       const SizedBox(height: 20),
+
+                      // OTP input field
                       PinCodeTextField(
                         controller: _otpController,
                         appContext: context,
@@ -103,32 +103,10 @@ class _OtpScreenState extends State<OtpScreen> {
                         ),
                         animationDuration: const Duration(milliseconds: 300),
                         enableActiveFill: true,
-                        // onCompleted: (v) {
-                        //   print("Completed: $v");
-                        // },
-                        // onChanged: (value) {
-                        //   print(value);
-                        // },
-                        // beforeTextPaste: (text) {
-                        //   return true;
-                        // },
                       ),
                       const SizedBox(height: 20),
                       ElevatedButton(
                         onPressed: () async {
-                          // // if all ok then go to home screen
-                          // String otp = _otpController.text.toString();
-                          // if (otp.length != 6) {
-                          //   ScaffoldMessenger.of(context).showSnackBar(
-                          //     const SnackBar(
-                          //       content: Text("Please enter a valid OTP"),
-                          //     ),
-                          //   );
-                          //   return;
-                          // }
-                          // await _phoneAuth.signInWithPhoneNumber(
-                          //     widget.phoneNumber, otp, context);
-
                           try {
                             PhoneAuthCredential credential =
                                 await PhoneAuthProvider.credential(
@@ -137,10 +115,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             FirebaseAuth.instance
                                 .signInWithCredential(credential)
                                 .then((value) {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => HomeScreen()));
+                              // clear the navigation stack and after that add the home screen
                               Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(

@@ -39,15 +39,6 @@ class DecreaseQuantity extends CartEvent {
   List<Object> get props => [pizzaId];
 }
 
-class RemoveFromCart extends CartEvent {
-  final String pizzaId;
-
-  const RemoveFromCart(this.pizzaId);
-
-  @override
-  List<Object> get props => [pizzaId];
-}
-
 class AddTipEvent extends CartEvent {
   final double tip;
 

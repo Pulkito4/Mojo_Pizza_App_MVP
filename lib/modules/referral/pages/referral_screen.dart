@@ -1,20 +1,14 @@
 import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
 import 'package:mojo_pizza_app_mvp/modules/menu/views/pages/menu_screen.dart';
 
-import '../../referral/widgets/ordernow.dart';
 import '../../referral/widgets/stepscard.dart';
 import '../../referral/widgets/refer_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Referral extends StatefulWidget {
+class Referral extends StatelessWidget {
   const Referral({super.key});
 
-  @override
-  State<Referral> createState() => _ReferralState();
-}
-
-class _ReferralState extends State<Referral> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -22,7 +16,6 @@ class _ReferralState extends State<Referral> {
     double textSize = screenWidth * 0.05;
 
     return SafeArea(
-      //os ki functionality se disturb nhi hoga
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -45,7 +38,6 @@ class _ReferralState extends State<Referral> {
                           children: [
                             Row(
                               children: [
-                                
                                 Text(
                                   "INDIA'S BIGGEST REFERRAL",
                                   style: TextStyle(
@@ -117,7 +109,10 @@ class _ReferralState extends State<Referral> {
                       // Ordernow(),
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>MenuScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const MenuScreen()));
                         },
                         style: CustomButtonStyles.orangeButton.copyWith(
                           minimumSize: WidgetStatePropertyAll(
@@ -242,7 +237,12 @@ class _ReferralState extends State<Referral> {
               //  Ordernow(),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>MenuScreen()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MenuScreen(),
+                    ),
+                  );
                 },
                 style: CustomButtonStyles.orangeButton.copyWith(
                   minimumSize: WidgetStatePropertyAll(

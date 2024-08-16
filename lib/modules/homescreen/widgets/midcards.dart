@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mojo_pizza_app_mvp/modules/menu/views/pages/menu_screen.dart';
 
-class Midcards extends StatefulWidget {
+class Midcards extends StatelessWidget {
   final String imgpath;
   //final String menu;
   const Midcards({super.key, required this.imgpath});
 
-  @override
-  State<Midcards> createState() => _MidcardsState();
-}
-
-class _MidcardsState extends State<Midcards> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -35,7 +30,7 @@ class _MidcardsState extends State<Midcards> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.asset(
-              widget.imgpath,
+              imgpath,
               fit: BoxFit.cover,
             ),
           ),

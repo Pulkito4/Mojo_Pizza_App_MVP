@@ -22,10 +22,19 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         .doc(event.pizzaId)
         .get();
 
+
+    // Check if the pizza document exists in the database
     if (pizzaDoc.exists) {
+
+      // Get the pizza data from the document
       final pizzaData = pizzaDoc.data();
+
+      // Check if the pizza is already in the cart
       final existingItem = state.items.firstWhere(
         (item) => item.pizzaId == event.pizzaId,
+
+
+        // If the pizza is not in the cart, create a new CartItem
         orElse: () => CartItem(
           pizzaId: event.pizzaId,
           pizzaName: pizzaData?['title'] ?? '',

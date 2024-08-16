@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 
 import '../../modules/sign_up/views/pages/otp_screen.dart';
 
+// NOTE THAT THIS FILE's CODE IS NOT BEING USED ANYWHERE IN THE PROJECT DUE TO COUNTRY CODE HANDLING ISSUES WITH PHONE AUTHENTICATION/ TEXT CONTROLLERS
 class PhoneAuth {
   final TextEditingController? _phoneController;
   late final String _phoneNumber;
 
-  PhoneAuth(this._phoneController){
-        _phoneNumber = _phoneController!.text.toString();
-
+  PhoneAuth(this._phoneController) {
+    _phoneNumber = _phoneController!.text.toString();
   }
   PhoneAuth.withPhoneNumber(this._phoneNumber) : _phoneController = null;
-
 
   Future<void> signInWithPhoneNumber(BuildContext context) async {
     try {
@@ -40,9 +39,8 @@ class PhoneAuth {
     }
   }
 
-void updatePhoneNumber(String newPhoneNumber) {
+  void updatePhoneNumber(String newPhoneNumber) {
     _phoneNumber = newPhoneNumber;
     // Add any additional logic needed when the phone number is updated
   }
-
 }

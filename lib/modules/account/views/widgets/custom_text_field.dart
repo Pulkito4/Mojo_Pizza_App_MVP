@@ -8,18 +8,21 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
+        enabledBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey),
+        ),
+        disabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.black)),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: Colors.grey,
           ),
-          disabledBorder:
-              UnderlineInputBorder(borderSide: BorderSide(color: Colors.black)),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.grey,
-            ),
-          ),
-          hintText: customHintText,
-          hintStyle: TextStyle(color: Colors.grey)),
+        ),
+        hintText: customHintText,
+        hintStyle: const TextStyle(
+          color: Colors.grey,
+        ),
+      ),
     );
   }
 }

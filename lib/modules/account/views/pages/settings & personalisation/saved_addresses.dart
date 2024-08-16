@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-class SavedAddresses extends StatefulWidget {
+class SavedAddresses extends StatelessWidget {
   const SavedAddresses({super.key});
 
-  @override
-  State<SavedAddresses> createState() => _SavedAddressesState();
-}
-
-class _SavedAddressesState extends State<SavedAddresses> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -17,22 +12,21 @@ class _SavedAddressesState extends State<SavedAddresses> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back)),
-        title: Text(
+            icon: const Icon(Icons.arrow_back)),
+        title: const Text(
           "ADDRESS LIST",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
-        bottom: PreferredSize(
+        bottom: const PreferredSize(
             preferredSize: Size.fromHeight(4),
             child: Divider(
               height: 5,
             )),
       ),
-      body: Padding(
+      body: const Padding(
         padding: EdgeInsets.all(8),
         child: Column(
           children: [
-
             Row(
               children: [
                 Icon(
@@ -52,7 +46,9 @@ class _SavedAddressesState extends State<SavedAddresses> {
                 ),
               ],
             ),
-            Divider(color: Color.fromARGB(255, 234, 233, 233),)
+            Divider(
+              color: Color.fromARGB(255, 234, 233, 233),
+            )
           ],
         ),
       ),

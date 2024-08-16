@@ -11,8 +11,8 @@ class SavedUpiIds extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(Icons.arrow_back)),
-        title: Text(
+            icon: const Icon(Icons.arrow_back)),
+        title: const Text(
           "SAVED UPI IDs",
           style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
         ),

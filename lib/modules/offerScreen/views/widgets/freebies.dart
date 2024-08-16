@@ -101,18 +101,6 @@ class Freebies extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // SizedBox(
-                  //   width: screenSize.width * 0.15,
-                  // ),
-                  // Container(
-                  //   // color: Colors.black,
-                  //   alignment: Alignment.centerRight,
-                  //   child: const Icon(
-                  //     Icons.arrow_forward_ios,
-                  //     size: 20,
-                  //     color: Colors.grey,
-                  //   ),
-                  // )
                 ],
               ),
             ),

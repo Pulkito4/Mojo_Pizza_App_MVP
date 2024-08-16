@@ -14,6 +14,7 @@ class HomeScreen extends StatelessWidget {
       fontFamily: CupertinoIcons.iconFont,
       fontPackage: CupertinoIcons.iconFontPackage);
 
+// update value of the current page index without rebuilding the widget // without using setState
   final ValueNotifier<int> _currentPageIndex = ValueNotifier<int>(0);
 
   final _destinations = const [
@@ -42,7 +43,6 @@ class HomeScreen extends StatelessWidget {
       selectedIcon: Icons.person,
       label: "Account",
     ),
-    
   ];
 
   final screens = const [

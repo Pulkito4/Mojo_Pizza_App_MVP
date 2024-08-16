@@ -51,7 +51,7 @@ class _PayScreenState extends State<PayScreen> {
           backgroundColor: Colors.white,
           elevation: 5,
           title: Padding(
-            padding: EdgeInsets.only(left: 35.0, top: 10),
+            padding: const EdgeInsets.only(left: 35.0, top: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -59,32 +59,26 @@ class _PayScreenState extends State<PayScreen> {
                   children: [
                     Text(
                       widget.totalpay,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 6,
                     ),
-                    
                   ],
                 ),
-                Text("You've saved ₹400 on this order",
-                    style: TextStyle(
-                        color: tealcol,
-                        fontSize: 17,
-                        fontWeight: FontWeight.bold))
               ],
             ),
           ),
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Column(
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Container(
-                    color: Color.fromARGB(255, 255, 255, 255),
+                    color: const Color.fromARGB(255, 255, 255, 255),
                     height: screenHeight * 0.15,
                     width: screenWidth,
                     child: Padding(
@@ -99,7 +93,8 @@ class _PayScreenState extends State<PayScreen> {
                                 child: Container(
                                   height: screenHeight * 0.035,
                                   width: screenWidth * 0.28,
-                                  color: Color.fromARGB(255, 211, 233, 249),
+                                  color:
+                                      const Color.fromARGB(255, 211, 233, 249),
                                   child: const Row(
                                     children: [
                                       Icon(Icons.shopping_bag_sharp),
@@ -114,12 +109,14 @@ class _PayScreenState extends State<PayScreen> {
                               SizedBox(
                                 width: screenWidth * 0.20,
                               ),
-                              const Text("Delivery in 20-25 mins",
-                                  style: TextStyle(
-                                      color: tealcol,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      fontStyle: FontStyle.italic)),
+                              const Text(
+                                "Delivery in 20-25 mins",
+                                style: TextStyle(
+                                    color: tealcol,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    fontStyle: FontStyle.italic),
+                              ),
                             ],
                           ),
                           const Divider(
@@ -127,8 +124,8 @@ class _PayScreenState extends State<PayScreen> {
                             color: Color.fromARGB(255, 86, 86, 86),
                           ),
                           BlocBuilder<UserBloc, UserState>(
-                              builder: (context, state) {
-                            return Align(
+                            builder: (context, state) {
+                              return Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
                                   state.address,
@@ -138,8 +135,10 @@ class _PayScreenState extends State<PayScreen> {
                                       color: Colors.grey[850],
                                       fontWeight: FontWeight.w600,
                                       fontSize: screenText * 0.08),
-                                ));
-                          })
+                                ),
+                              );
+                            },
+                          )
                         ],
                       ),
                     ),
@@ -166,13 +165,15 @@ class _PayScreenState extends State<PayScreen> {
                   method: "Pay with RazorPay",
                   onPressed: () {
                     String totalpay = widget.totalpay.toString();
-                    print("totalpay at payscreen $totalpay");
                     _paymentSc.openCheckout(totalpay.toString());
                     Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()),
-                        (Route<dynamic> route) => false,
-                );},
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
+                      ),
+                      (Route<dynamic> route) => false,
+                    );
+                  },
                 )
               ],
             ),

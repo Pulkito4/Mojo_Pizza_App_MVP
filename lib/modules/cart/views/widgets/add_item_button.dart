@@ -7,7 +7,8 @@ import '../../bloc/cart_bloc.dart';
 class AddItemButton extends StatelessWidget {
   final int quantity;
   final String pizzaId;
-  const AddItemButton({super.key, required this.quantity, required this.pizzaId});
+  const AddItemButton(
+      {super.key, required this.quantity, required this.pizzaId});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,6 @@ class AddItemButton extends StatelessWidget {
       //mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-     
         Container(
           width: 110.0, // Small width
           height: 30.0, // Small height
@@ -28,12 +28,14 @@ class AddItemButton extends StatelessWidget {
             children: [
               // Decrement Button
               IconButton(
-                icon:const Icon(Icons.remove, size: 14.0), // Smaller icon
+                icon: const Icon(Icons.remove, size: 14.0), // Smaller icon
                 onPressed: () {
-                  BlocProvider.of<CartBloc>(context).add(DecreaseQuantity(pizzaId));
+                  BlocProvider.of<CartBloc>(context)
+                      .add(DecreaseQuantity(pizzaId));
                 },
                 padding: const EdgeInsets.all(0), // Remove default padding
-                constraints:const BoxConstraints(), // Remove default constraints
+                constraints:
+                    const BoxConstraints(), // Remove default constraints
               ),
 
               // Item Count
@@ -44,12 +46,18 @@ class AddItemButton extends StatelessWidget {
 
               // Increment Button
               IconButton(
-                icon: const Icon(Icons.add, size: 14.0, color:  Color.fromARGB(255, 255, 123, 0),), // Smaller icon
+                icon: const Icon(
+                  Icons.add,
+                  size: 14.0,
+                  color: Color.fromARGB(255, 255, 123, 0),
+                ), // Smaller icon
                 onPressed: () {
- BlocProvider.of<CartBloc>(context).add(IncreaseQuantity(pizzaId));
+                  BlocProvider.of<CartBloc>(context)
+                      .add(IncreaseQuantity(pizzaId));
                 },
-                padding: EdgeInsets.all(0), // Remove default padding
-                constraints: BoxConstraints(), // Remove default constraints
+                padding: const EdgeInsets.all(0), // Remove default padding
+                constraints:
+                    const BoxConstraints(), // Remove default constraints
               ),
             ],
           ),

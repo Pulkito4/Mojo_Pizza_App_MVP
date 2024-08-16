@@ -2,15 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../menu/views/pages/menu_screen.dart';
 
-class Bigcards extends StatefulWidget {
+class Bigcards extends StatelessWidget {
   final String imgpath;
   const Bigcards({super.key, required this.imgpath});
 
-  @override
-  State<Bigcards> createState() => _BigcardsState();
-}
-
-class _BigcardsState extends State<Bigcards> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -33,7 +28,7 @@ class _BigcardsState extends State<Bigcards> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.asset(
-              widget.imgpath,
+              imgpath,
               fit: BoxFit.cover,
             ),
           ),

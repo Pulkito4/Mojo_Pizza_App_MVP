@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/pages/help%20&%20support/help_support_screen.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/pages/refer_and_earn.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/pages/saved%20payment%20methods/saved_payments_methods.dart';
 import 'package:mojo_pizza_app_mvp/modules/account/views/pages/settings%20&%20personalisation/settings_personalisation.dart';
 import 'package:mojo_pizza_app_mvp/modules/eatClubScreen/views/pages/eatClub.dart';
-import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/sign_up_screen.dart';
 
 import '../../../sign_up/bloc/user_bloc.dart';
 import '../../../sign_up/bloc/user_state.dart';
@@ -23,56 +21,47 @@ class AccountScreen extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              // Account Info Section  // Login section with Login Button
-              BlocBuilder<UserBloc, UserState>(builder: (context, state) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          state.name,
-                          style: const TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w900,
+              // Account Info Section
+              BlocBuilder<UserBloc, UserState>(
+                builder: (context, state) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            state.name,
+                            style: const TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.w900,
+                            ),
                           ),
-                        ),
-                        Text(
-                          state.email,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 16),
-                        ),
-                      ],
-                    ),
-
-                    // // Login Button
-                    // ElevatedButton(
-                    //   onPressed: () {
-                    //     Navigator.of(context).push(
-                    //       MaterialPageRoute(
-                    //         builder: (context) => SignUpScreen(),
-                    //       ),
-                    //     );
-                    //   },
-                    //   style: CustomButtonStyles.orangeButton.copyWith(
-                    //     fixedSize: WidgetStateProperty.all<Size>(
-                    //       const Size(100, 30),
-                    //     ),
-                    //   ),
-                    //   child: const Text("LOGIN"),
-                    // )
-                  ],
-                );
-              }),
+                          Text(
+                            state.email,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
+                },
+              ),
               const SizedBox(height: 50),
 
+              // EatClub Card Section
               GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Eatclub()));
-                  },
-                  child: Image.asset('assets/logos/eatclub_card.jpg')),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Eatclub(),
+                    ),
+                  );
+                },
+                child: Image.asset('assets/logos/eatclub_card.jpg'),
+              ),
 
               const SizedBox(height: 50),
 
@@ -80,9 +69,11 @@ class AccountScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SettingsPersonalisation()));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SettingsPersonalisation(),
+                    ),
+                  );
                 },
                 child: const AccountPageCard(
                   icon: Icons.settings_outlined,
@@ -95,8 +86,11 @@ class AccountScreen extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ReferAndEarn()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ReferAndEarn()),
+                  );
                 },
                 child: const AccountPageCard(
                   icon: Icons.people_outline_outlined,
@@ -121,9 +115,11 @@ class AccountScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => SavedPaymentsMethods()));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SavedPaymentsMethods(),
+                    ),
+                  );
                 },
                 child: const AccountPageCard(
                   icon: Icons.payments_outlined,

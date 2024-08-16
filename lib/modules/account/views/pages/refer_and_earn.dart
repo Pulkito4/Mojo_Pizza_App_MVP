@@ -4,14 +4,9 @@ import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
 import 'package:mojo_pizza_app_mvp/modules/referral/widgets/refer_widgets.dart';
 import 'package:mojo_pizza_app_mvp/modules/referral/widgets/stepscard.dart';
 
-class ReferAndEarn extends StatefulWidget {
+class ReferAndEarn extends StatelessWidget {
   const ReferAndEarn({super.key});
 
-  @override
-  State<ReferAndEarn> createState() => _ReferAndEarnState();
-}
-
-class _ReferAndEarnState extends State<ReferAndEarn> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -19,14 +14,12 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
     double textSize = screenWidth * 0.05;
 
     return SafeArea(
-      //os ki functionality se disturb nhi hoga
       child: Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              //stack -> referral and video
               Stack(
                 children: [
                   Padding(
@@ -36,7 +29,7 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                       width: screenWidth,
                       color: Colors.black,
                       child: Padding(
-                        padding: EdgeInsets.only(top: 10.0, left: 25),
+                        padding: const EdgeInsets.only(top: 10.0, left: 25),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -46,11 +39,11 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.arrow_back,
                                       color: Colors.white,
                                     )),
-                                Text(
+                                const Text(
                                   "INDIA'S BIGGEST REFERRAL",
                                   style: TextStyle(
                                       fontSize: 23,
@@ -59,7 +52,7 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                                 ),
                               ],
                             ),
-                            Text("Earn ₹500 per friend",
+                            const Text("Earn ₹500 per friend",
                                 style: TextStyle(
                                   fontSize: 23,
                                   color: Colors.white,
@@ -240,8 +233,6 @@ class _ReferAndEarnState extends State<ReferAndEarn> {
                 ),
               ),
 
-              //order button -> navigates to homescreen
-              //  Ordernow(),
               ElevatedButton(
                 onPressed: () {},
                 style: CustomButtonStyles.orangeButton.copyWith(

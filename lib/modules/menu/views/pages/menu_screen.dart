@@ -9,7 +9,6 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      
       length: 7,
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -35,9 +34,7 @@ class MenuScreen extends StatelessWidget {
               onPressed: () {},
             ),
             OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                 // add ui feature : when button is selected green bg and white text
-                ),
+                style: OutlinedButton.styleFrom(),
                 onPressed: () {},
                 child: const Text(
                   "Veg",
@@ -65,7 +62,7 @@ class MenuScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: const  TabBarView(
+        body: const TabBarView(
           children: [
             MenuItems(category: "value fun pizza"),
             MenuItems(category: "regular 7 pizza veg"),
@@ -74,20 +71,26 @@ class MenuScreen extends StatelessWidget {
             MenuItems(category: "big 10 pizza non veg"),
             MenuItems(category: "garlic breads"),
             MenuItems(category: "deserts and drinks"),
-            
           ],
         ),
-        floatingActionButton: SizedBox
-        (height: 70,
-        width: 70,
-        
+        floatingActionButton: SizedBox(
+          height: 70,
+          width: 70,
           child: FloatingActionButton(
             backgroundColor: const Color.fromARGB(255, 255, 123, 0),
-            onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>CartScreen()));
-          },
-          child: Icon(Icons.shopping_cart, color: Colors.white,size: 35,),
-          
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CartScreen(),
+                ),
+              );
+            },
+            child: const Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+              size: 35,
+            ),
           ),
         ),
       ),

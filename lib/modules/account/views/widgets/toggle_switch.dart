@@ -14,7 +14,7 @@ class _ToggleSwitchState extends State<ToggleSwitch> {
     return Switch(
       // This bool value toggles the switch.
       value: light,
-      activeColor: Color.fromARGB(255, 34, 187, 201),
+      activeColor: const Color.fromARGB(255, 34, 187, 201),
       onChanged: (bool value) {
         // This is called when the user toggles the switch.
         setState(() {

@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/views/pages/otp_screen.dart';
-import 'package:mojo_pizza_app_mvp/shared/services/phone_auth.dart';
 
 import '../../../../custom_button_styles.dart';
 import '../../../../shared/services/firestore_service.dart';
@@ -21,7 +20,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   FirestoreService _firestoreService = FirestoreService();
 
-
   _signInWithPhoneNumber(BuildContext context) async {
     try {
       await FirebaseAuth.instance.verifyPhoneNumber(
@@ -29,11 +27,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         verificationFailed: (FirebaseAuthException ex) {},
         codeSent: (String verificationid, int? resendtoken) {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => OtpScreen(
-                        verificationid: verificationid,
-                      )));
+            context,
+            MaterialPageRoute(
+              builder: (context) => OtpScreen(
+                verificationid: verificationid,
+              ),
+            ),
+          );
         },
         codeAutoRetrievalTimeout: (String verificationid) {},
         phoneNumber: widget.phoneNumber.toString(),
@@ -42,7 +42,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       print("Error signing in with phone number: $e");
     }
   }
- 
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -158,14 +158,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                             phone: widget.phoneNumber,
                           );
                           _signInWithPhoneNumber(context);
-                          // Navigate to the next screen
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //       builder: (context) => OtpScreen(
-                          //             phoneNumber: widget.phoneNumber,
-                          //           )),
-                          // );
                         },
                         style: CustomButtonStyles.orangeButton,
                         child: const Text("Continue"),

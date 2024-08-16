@@ -19,10 +19,10 @@ class _ProfileDetailsState extends State<ProfileDetails> {
   bool isEnabled4 = false;
 
   // Controllers for each text box
-  TextEditingController _controller1 = TextEditingController();
-  TextEditingController _controller2 = TextEditingController();
-  TextEditingController _controller3 = TextEditingController();
-  TextEditingController _controller4 = TextEditingController();
+  final TextEditingController _controller1 = TextEditingController();
+  final TextEditingController _controller2 = TextEditingController();
+  final TextEditingController _controller3 = TextEditingController();
+  final TextEditingController _controller4 = TextEditingController();
 
   // Check if any text box is enabled
   bool isAnyTextBoxEnabled() {
@@ -37,8 +37,8 @@ class _ProfileDetailsState extends State<ProfileDetails> {
       children: <Widget>[
         Text(
           title,
-          style:
-              TextStyle(fontSize: 12, color: Colors.grey), // Small title text
+          style: const TextStyle(
+              fontSize: 12, color: Colors.grey), // Small title text
         ),
         Row(
           children: <Widget>[
@@ -48,20 +48,20 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                 enabled: isEnabled,
                 decoration: InputDecoration(
                   hintText: 'Enter your ${title.toLowerCase()}',
-                  hintStyle: TextStyle(color: Colors.grey),
+                  hintStyle: const TextStyle(color: Colors.grey),
                   // border: OutlineInputBorder(),
                 ),
               ),
             ),
             IconButton(
-              icon: Icon(Icons.edit),
+              icon: const Icon(Icons.edit),
               onPressed: () {
                 onToggle(!isEnabled);
               },
             ),
           ],
         ),
-        SizedBox(height: 16), // Space between text boxes
+        const SizedBox(height: 16), // Space between text boxes
       ],
     );
   }
@@ -72,7 +72,7 @@ class _ProfileDetailsState extends State<ProfileDetails> {
       context: context,
       barrierDismissible: false, // Prevent dismissal by tapping outside
       builder: (BuildContext context) {
-        return Dialog(
+        return const Dialog(
           backgroundColor: Colors.transparent,
           child: Center(child: CircularProgressIndicator()),
         );
@@ -80,14 +80,14 @@ class _ProfileDetailsState extends State<ProfileDetails> {
     );
 
     // Simulate a delay (e.g., network request)
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
     // Close loading dialog
     Navigator.of(context).pop();
 
     // Show Snackbar
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Your details have been saved successfully'),
       ),
     );
@@ -99,24 +99,17 @@ class _ProfileDetailsState extends State<ProfileDetails> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('PERSONAL INFORMATION'),
+          title: const Text('PERSONAL INFORMATION'),
           actions: [
             if (isAnyTextBoxEnabled())
               GestureDetector(
                   onTap: () {
                     _handleSubmit;
                   },
-                  child: Text(
+                  child: const Text(
                     "UPDATE",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ))
-            // IconButton(
-            //   icon: Icon(Icons.check),
-            //   onPressed: () {
-            //     // Action when the AppBar button is pressed
-            //     // print('AppBar button pressed');
-            //   },
-            // ),
           ],
         ),
         body: Padding(
@@ -164,61 +157,6 @@ class _ProfileDetailsState extends State<ProfileDetails> {
                 ),
               )
             : null,
-        //   appBar: AppBar(
-        //       leading: IconButton(
-        //         onPressed: () {
-        //           Navigator.pop(context);
-        //         },
-        //         icon: Icon(Icons.arrow_back)),
-        //       title: Text(
-        //         "PERSONAL INFORMATION",
-        //         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-        //       ),
-        //        actions: isEnabled
-        //       ? [
-        //           IconButton(
-        //             icon: Icon(Icons.check),
-        //             onPressed: () {
-        //               // Action when the AppBar button is pressed
-        //               // print('AppBar button pressed');
-        //             },
-        //           ),
-        //         ]
-        //       : [],
-        //       bottom:
-        //       PreferredSize(
-        //         preferredSize: Size.fromHeight(4),
-        //         child: Divider(height: 5,)),
-        //     ),
-        //     body: Column(
-        //       children: [
-        //         ProfileDetailsTextbox(title: "Name",),
-        //         SizedBox(height: screenSize.height*0.02,),
-        //         ProfileDetailsTextbox(title: "Mobile",),
-        //         SizedBox(height: screenSize.height*0.02,),
-        //         ProfileDetailsTextbox(title: "Email", ),
-        //         SizedBox(height: screenSize.height*0.02,),
-        //         ProfileDetailsTextbox(title: "My Birthday",)
-        //       ],
-        //     ),
-        //    floatingActionButton: SizedBox(
-        //     width: screenSize.width*0.5,
-        //     child: FloatingActionButton(
-        //     onPressed: () {
-        //       // Add your onPressed code here!
-        //     },
-        //     child: Row(
-        //       children: [
-
-        //         Icon(Icons.delete, color: const Color.fromARGB(255, 93, 93, 93)),
-        //         Text("DELETE ACCOUNT"),
-        //       ],
-        //     ), // Adjust icon color for visibility
-        //     backgroundColor: Colors.white, // Make FAB background white
-        //     elevation: 0, // Remove shadow
-        //           ),
-        //   ),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       ),
     );
   }

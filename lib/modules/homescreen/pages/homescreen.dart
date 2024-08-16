@@ -2,79 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/bloc/user_bloc.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/bloc/user_state.dart';
-import '../../../shared/services/geo_locator_service.dart';
 import '../../cart/views/pages/cart_screen.dart';
 import '../../homescreen/widgets/bigcards.dart';
 import '../../homescreen/widgets/midcards.dart';
 import '../../homescreen/widgets/topcards.dart';
 
-//import 'package:google_fonts/google_fonts.dart';
-//import 'package:carousel_slider/carousel_slider.dart';
-
-class Homescreen extends StatefulWidget {
+class Homescreen extends StatelessWidget {
   const Homescreen({super.key});
-
-  @override
-  State<Homescreen> createState() => _HomescreenState();
-}
-
-class _HomescreenState extends State<Homescreen> {
-  //late final String address;
-  // String currentAddress = "";
-  // final GeoLocatorService geoLocatorService = GeoLocatorService();
-  //currentAddress = geoLocatorService.getCurrentAddress(currentAddress);
-/* 
-  @override
-  void initState() {
-    super.initState();
-    fetchAddress();
-  } */
-
-  /* Future<void> fetchAddress() async {
-    String address = await getAddressFromLocation();
-    setState(() {
-      currentAddress = address;
-    });
-  } */
-
-  // getCurrentAddress() async {
-  //   String address = await getAddressFromLocation();
-  //   currentAddress = address;
-  //   print('Current Address: $address');
-  // }
-  // void displayAddress() async {
-  //   String address = await getCurrentAddress();
-  //   print('Current Address: $address');
-  //   // You can also use the address in a UI element or anywhere else
-  // }
 
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     double textSize = screenWidth * 0.05;
-    //dynamic sb=SizedBox(height: 15,);
 
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Padding(
-          padding: EdgeInsets.only(top: 10.0, bottom: 4),
+          padding: const EdgeInsets.only(top: 10.0, bottom: 4),
           child: Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.location_on_sharp,
                 size: 35,
                 color: Colors.red,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         "DELIVER AT",
@@ -87,29 +48,14 @@ class _HomescreenState extends State<Homescreen> {
                       )
                     ],
                   ),
-                  //link location address here
-                  BlocBuilder<UserBloc, UserState>(
-                    builder: (context, state) {
-                      return Text(state.address,
-                          style: TextStyle(
-                            fontSize: 18,
-                          ));
-                    }
-                  ),
-                  // FutureBuilder<String>(
-                  //   future: getCurrentAddress(),
-                  //   builder: (context, snapshot) {
-                  //     if (snapshot.connectionState == ConnectionState.waiting) {
-                  //       return CircularProgressIndicator();
-                  //     } else if (snapshot.hasError) {
-                  //       return Text('Error: ${snapshot.error}');
-                  //     } else if (snapshot.hasData) {
-                  //       return Text('Current Address: ${snapshot.data}');
-                  //     } else {
-                  //       return Text('No address available');
-                  //     }
-                  //   },
-                  // ),
+                  BlocBuilder<UserBloc, UserState>(builder: (context, state) {
+                    return Text(
+                      state.address,
+                      style: const TextStyle(
+                        fontSize: 18,
+                      ),
+                    );
+                  }),
                 ],
               )
             ],
@@ -143,7 +89,7 @@ class _HomescreenState extends State<Homescreen> {
                               child: Image.asset("assets/topcard/c1.png")),
                         )),
                     Card(
-                        color: Color.fromARGB(255, 239, 217, 202),
+                        color: const Color.fromARGB(255, 239, 217, 202),
                         child: SizedBox(
                           height: screenHeight * 0.12,
                           width: screenWidth * 0.76,
@@ -232,20 +178,22 @@ class _HomescreenState extends State<Homescreen> {
           ),
         ),
       ),
-      floatingActionButton: SizedBox
-        (height: 70,
+      floatingActionButton: SizedBox(
+        height: 70,
         width: 70,
-        
-          child: FloatingActionButton(
-            backgroundColor: const Color.fromARGB(255, 255, 123, 0),
-            onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>CartScreen()));
+        child: FloatingActionButton(
+          backgroundColor: const Color.fromARGB(255, 255, 123, 0),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const CartScreen()));
           },
-          child: Icon(Icons.shopping_cart, color: Colors.white,size: 35,),
-          
+          child: const Icon(
+            Icons.shopping_cart,
+            color: Colors.white,
+            size: 35,
           ),
         ),
-
+      ),
     ));
   }
 }

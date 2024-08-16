@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
-class FirestoreService{
-
-
+class FirestoreService {
   Future<void> updateUserPhoneNumber(String email, String phoneNumber) async {
+    // find the user in firestore using email // get the document id
     final QuerySnapshot result = await FirebaseFirestore.instance
         .collection('users')
         .where('email', isEqualTo: email)
         .limit(1)
         .get();
+
+    // if user exists, update the phone number
     if (result.docs.isNotEmpty) {
       final docId = result.docs.first.id;
       await FirebaseFirestore.instance
@@ -19,17 +19,11 @@ class FirestoreService{
     }
   }
 
-
-  // Future<void> addUserToFirestore(UserCredential userCred) async {
-  //   await FirebaseFirestore.instance.collection('users').add({
-  //     'email': userCred.user!.email,
-  //     'name': userCred.user!.displayName,
-  //     'password': "",
-  //     'phone': userCred.user!.phoneNumber,
-  //   });
-  // }
-
-   Future<void> addUserToFirestore({required String email,required  String name, String password ="", String phone=""}) async {
+  Future<void> addUserToFirestore(
+      {required String email,
+      required String name,
+      String password = "",
+      String phone = ""}) async {
     await FirebaseFirestore.instance.collection('users').add({
       'email': email,
       'name': name,
@@ -48,7 +42,6 @@ class FirestoreService{
     return documents.isNotEmpty;
   }
 
-
   Future<bool> checkIfPhoneExists(String phoneNumber) async {
     final QuerySnapshot result = await FirebaseFirestore.instance
         .collection('users')
@@ -58,6 +51,4 @@ class FirestoreService{
     final List<DocumentSnapshot> documents = result.docs;
     return documents.isNotEmpty;
   }
-
-
 }

@@ -9,7 +9,7 @@ class AlloffersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const SingleChildScrollView(
       child: Column(
-        children: [ Freebies(), Flatoff()],
+        children: [Freebies(), Flatoff()],
       ),
     );
   }

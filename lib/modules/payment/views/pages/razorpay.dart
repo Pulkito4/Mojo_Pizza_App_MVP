@@ -37,10 +37,7 @@ class PaymentSc {
         'name': 'MOJO PIZZA',
         'description': 'Flutter Pay',
         'timeout': 60, // in seconds
-        'prefill': {
-          'contact': '8851119444',
-          'email': 'tgoel029@gmail.com'
-        }
+        'prefill': {'contact': '8851119444', 'email': 'tgoel029@gmail.com'}
       };
 
       _razorpay.open(options);
@@ -48,28 +45,6 @@ class PaymentSc {
       debugPrint("Error parsing total payment: $e");
     }
   }
-
-  // void openCheckout(String totalpayment) async {
-  //   String totalpay = totalpayment.toString();
-  //   double paymentAmount = double.tryParse(totalpay) ?? 0.0;
-  //   int amountInPaise = (paymentAmount * 100).toInt();
-  //   print("at checkout function :$amountInPaise");
-  //   var options = {
-  //     'key': 'rzp_test_QuCbsq1kJTOrdW',
-  //     'amount': amountInPaise, // in paise
-  //     'currency': 'INR',
-  //     'name': 'MOJO PIZZA',
-  //     'description': 'Flutter Pay',
-  //     'timeout': 60, // in seconds
-  //     'prefill': {'contact': '9000090000', 'email': 'gaurav.kumar@example.com'}
-  //   };
-
-  //   try {
-  //     _razorpay.open(options);
-  //   } catch (e) {
-  //     debugPrint("Error: $e");
-  //   }
-  // }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     Fluttertoast.showToast(
