@@ -59,7 +59,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contributors 
 
-Pulkit Goyal
-Mayank Goel 
-Tanishka Goel
-Devansh Bansal
+Pulkit Goyal | Mayank Goel | Tanishka Goel | Devansh Bansal
