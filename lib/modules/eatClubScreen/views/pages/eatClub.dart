@@ -161,7 +161,7 @@ class _EatclubState extends State<Eatclub> {
                               child: Container(
                                   padding: EdgeInsets.zero,
                                   width: screenSize.width * 0.4,
-                                  height: screenSize.height * 0.17,
+                                  height: screenSize.height * 0.2,
                                   decoration: BoxDecoration(
                                       color: selectedOption == 'Free'
                                           ? const Color.fromARGB(
@@ -238,7 +238,7 @@ class _EatclubState extends State<Eatclub> {
                               child: Container(
                                   padding: EdgeInsets.zero,
                                   width: screenSize.width * 0.4,
-                                  height: screenSize.height * 0.17,
+                                  height: screenSize.height * 0.2,
                                   decoration: BoxDecoration(
                                       color: selectedOption == 'paid'
                                           ? const Color.fromARGB(

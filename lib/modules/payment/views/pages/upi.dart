@@ -117,7 +117,7 @@ class _UpipayState extends State<Upipay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Integrate UPI"),
+        title: Text("Make Payment"),
       ),
       body: Column(
         children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mojo_pizza_app_mvp/modules/cart/views/pages/cart_screen.dart';
 
 import '../widgets/menu_items.dart';
 
@@ -75,6 +76,19 @@ class MenuScreen extends StatelessWidget {
             MenuItems(category: "deserts and drinks"),
             
           ],
+        ),
+        floatingActionButton: SizedBox
+        (height: 70,
+        width: 70,
+        
+          child: FloatingActionButton(
+            backgroundColor: const Color.fromARGB(255, 255, 123, 0),
+            onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>CartScreen()));
+          },
+          child: Icon(Icons.shopping_cart, color: Colors.white,size: 35,),
+          
+          ),
         ),
       ),
     );

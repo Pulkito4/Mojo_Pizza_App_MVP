@@ -38,8 +38,8 @@ class PaymentSc {
         'description': 'Flutter Pay',
         'timeout': 60, // in seconds
         'prefill': {
-          'contact': '9000090000',
-          'email': 'gaurav.kumar@example.com'
+          'contact': '8851119444',
+          'email': 'tgoel029@gmail.com'
         }
       };
 

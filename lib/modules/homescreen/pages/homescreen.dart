@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/bloc/user_bloc.dart';
 import 'package:mojo_pizza_app_mvp/modules/sign_up/bloc/user_state.dart';
 import '../../../shared/services/geo_locator_service.dart';
+import '../../cart/views/pages/cart_screen.dart';
 import '../../homescreen/widgets/bigcards.dart';
 import '../../homescreen/widgets/midcards.dart';
 import '../../homescreen/widgets/topcards.dart';
@@ -231,6 +232,20 @@ class _HomescreenState extends State<Homescreen> {
           ),
         ),
       ),
+      floatingActionButton: SizedBox
+        (height: 70,
+        width: 70,
+        
+          child: FloatingActionButton(
+            backgroundColor: const Color.fromARGB(255, 255, 123, 0),
+            onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>CartScreen()));
+          },
+          child: Icon(Icons.shopping_cart, color: Colors.white,size: 35,),
+          
+          ),
+        ),
+
     ));
   }
 }

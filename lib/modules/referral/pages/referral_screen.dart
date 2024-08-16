@@ -1,4 +1,5 @@
 import 'package:mojo_pizza_app_mvp/custom_button_styles.dart';
+import 'package:mojo_pizza_app_mvp/modules/menu/views/pages/menu_screen.dart';
 
 import '../../referral/widgets/ordernow.dart';
 import '../../referral/widgets/stepscard.dart';
@@ -115,7 +116,9 @@ class _ReferralState extends State<Referral> {
                       ),
                       // Ordernow(),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>MenuScreen()));
+                        },
                         style: CustomButtonStyles.orangeButton.copyWith(
                           minimumSize: WidgetStatePropertyAll(
                             Size(
@@ -238,7 +241,9 @@ class _ReferralState extends State<Referral> {
               //order button -> navigates to homescreen
               //  Ordernow(),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>MenuScreen()));
+                },
                 style: CustomButtonStyles.orangeButton.copyWith(
                   minimumSize: WidgetStatePropertyAll(
                     Size(

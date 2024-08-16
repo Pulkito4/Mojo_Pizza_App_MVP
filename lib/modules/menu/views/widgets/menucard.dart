@@ -170,13 +170,7 @@ class Menucard extends StatelessWidget {
                                                       title,
                                                       int.parse(price),
                                                       isVeg));
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      CartScreen(),
-                                                ),
-                                              );
+                                              
                                             },
                                             style: OutlinedButton.styleFrom(
                                               shape: RoundedRectangleBorder(
