@@ -11,10 +11,20 @@ import 'modules/splash/views/pages/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
+    // Check if Firebase is already initialized
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  } catch (e) {
+    if (e is FirebaseException && e.code == 'duplicate-app') {
+      // Firebase is already initialized, continue
+      print('Firebase already initialized');
+    } else {
+      // Re-throw other exceptions
+      rethrow;
+    }
+  }
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(
@@ -25,6 +35,7 @@ Future<void> main() async {
       )
     ],
     child: const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: SplashScreen(),
     ),
   ));

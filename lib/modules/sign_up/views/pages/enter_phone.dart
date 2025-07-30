@@ -107,7 +107,7 @@ class _EnterPhoneState extends State<EnterPhone> {
                       ),
                       const SizedBox(height: 5),
                       const Text(
-                          "you want the OTP to be sent on (with country code)"),
+                          "you want the OTP to be sent on (with country code)\nNote : Use +91 9876543210 and OTP : 123456 due to billing is not enabled"),
                       const SizedBox(height: 20),
                       TextField(
                         controller: _phoneController,
